@@ -38,10 +38,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # Thrird Party Apps
+    # Third Party Apps
 
     # Own Apps
     'home.apps.HomeConfig',
+    'ade4.apps.Ade4Config',
 ]
 
 MIDDLEWARE = [
