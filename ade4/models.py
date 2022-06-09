@@ -16,3 +16,7 @@ class Skill(TimestampMixin):
 
     def __str__(self):
         return self.title.upper()
+
+
+class Address(TimestampMixin):
+    raw_address = models.CharField(max_length=100, unique=True, null=False, blank=False)
