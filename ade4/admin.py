@@ -13,3 +13,8 @@ class SkillAdmin(admin.ModelAdmin):
 @admin.register(m.Address)
 class AddressAdmin(admin.ModelAdmin):
     list_display = ['raw_address', 'created_at', 'updated_at']
+
+
+@admin.register(m.Constants)
+class ConstantAdmin(admin.ModelAdmin):
+    list_display = ['title', 'amount']

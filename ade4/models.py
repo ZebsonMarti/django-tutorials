@@ -20,3 +20,8 @@ class Skill(TimestampMixin):
 
 class Address(TimestampMixin):
     raw_address = models.CharField(max_length=100, unique=True, null=False, blank=False)
+
+
+class Constants(TimestampMixin):
+    title = models.CharField(max_length=100, null=False, blank=False)
+    amount = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False)
