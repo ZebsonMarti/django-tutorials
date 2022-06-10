@@ -26,3 +26,10 @@ class MeetingAdmin(admin.ModelAdmin):
 
     def get_date(self, obj):
         return obj.date.strftime('%d-%m-%Y')
+
+
+@admin.register(m.Member)
+class MemberAdmin(admin.ModelAdmin):
+    list_display = ['email', 'name', 'reg_date', 'address', 'member_skills']
+
+

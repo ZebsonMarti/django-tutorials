@@ -34,7 +34,7 @@ class Constants(TimestampMixin):
 
 
 class Meeting(TimestampMixin):
-    date = models.DateField(verbose_name='Date')
+    date = models.DateField(verbose_name='Date', unique=True)
     address = models.ForeignKey(to=Address, default='', on_delete=models.SET_DEFAULT)
     # hosts = models.ManyToManyField(to='Member', related_name='hosted_meetings', through='Hosts')
 
@@ -44,3 +44,21 @@ class Meeting(TimestampMixin):
 
     def __str__(self):
         return self.date.strftime('%d-%m-%Y')
+
+
+class Member(TimestampMixin):
+    email = models.EmailField(unique=True)
+    name = models.CharField(verbose_name='Full Name', max_length=100)
+    register_date = models.ForeignKey(to=Meeting, to_field='date', null=True, on_delete=models.SET_NULL)
+    address = models.ForeignKey(to=Address, on_delete=models.SET_NULL, null=True, blank=True, to_field='raw_address')
+    skills = models.ManyToManyField(to=Skill)
+
+    def __str__(self):
+        return self.email
+
+    def member_skills(self):
+        s = [skill.title for skill in self.skills.all()] if self.id else []
+        return '/'.join(s) if s else ''
+
+    def reg_date(self):
+        return self.register_date.date.strftime('%d-%m-%Y')
