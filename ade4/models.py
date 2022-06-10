@@ -50,7 +50,9 @@ class Constants(TimestampMixin):
 class Meeting(TimestampMixin):
     date = models.DateField(verbose_name="Date", unique=True)
     address = models.ForeignKey(to=Address, default="", on_delete=models.SET_DEFAULT)
-    # hosts = models.ManyToManyField(to='Member', related_name='hosted_meetings', through='Hosts')
+    hosts = models.ManyToManyField(
+        to="Member", related_name="hosted_meetings", through="Hosts"
+    )
 
     class Meta:
         verbose_name = "Meeting"
@@ -58,6 +60,10 @@ class Meeting(TimestampMixin):
 
     def __str__(self):
         return display_date(self.date)
+
+    def meeting_hosts(self):
+        h = [host.name for host in self.hosts.all()] if self.hosts else []
+        return " / ".join(h)
 
 
 class Member(TimestampMixin):
@@ -119,3 +125,28 @@ class ReceptionRound(TimestampMixin):
         verbose_name = "Reception Round"
         verbose_name_plural = "Reception Rounds"
         ordering = ["-start_date__date"]
+
+
+class Hosts(TimestampMixin):
+    reception_round = models.ForeignKey(
+        to=ReceptionRound, on_delete=models.SET_NULL, null=True
+    )
+    meeting = models.ForeignKey(
+        to=Meeting,
+        to_field="date",
+        on_delete=models.CASCADE,
+        null=False,
+        related_name="member_list",
+    )
+    member = models.ForeignKey(
+        to=Member, on_delete=models.SET_NULL, null=True, related_name="meeting_list"
+    )
+
+    class Meta:
+        verbose_name = "Hosts"
+        verbose_name_plural = "Hosts"
+        ordering = ["-meeting__date", "member__name"]
+        unique_together = [("reception_round", "meeting", "member")]
+
+    def __str__(self):
+        return f"({self.reception_round}, {self.meeting}, {self.member})"

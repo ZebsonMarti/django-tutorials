@@ -22,7 +22,7 @@ class ConstantAdmin(admin.ModelAdmin):
 
 @admin.register(m.Meeting)
 class MeetingAdmin(admin.ModelAdmin):
-    list_display = ['date', 'get_date', 'address']
+    list_display = ['date', 'get_date', 'meeting_hosts', 'address']
 
     def get_date(self, obj):
         return obj.date.strftime('%d-%m-%Y')
@@ -36,3 +36,8 @@ class MemberAdmin(admin.ModelAdmin):
 @admin.register(m.ReceptionRound)
 class ReceptionRoundAdmin(admin.ModelAdmin):
     list_display = ['start', 'end']
+
+
+@admin.register(m.Hosts)
+class HostsAdmin(admin.ModelAdmin):
+    list_display = ['reception_round', 'meeting', 'member']
