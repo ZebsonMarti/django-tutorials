@@ -150,3 +150,40 @@ class Hosts(TimestampMixin):
 
     def __str__(self):
         return f"({self.reception_round}, {self.meeting}, {self.member})"
+
+
+class TontineRound(TimestampMixin):
+    start_date = models.ForeignKey(
+        to=Meeting,
+        on_delete=models.CASCADE,
+        related_name="start_tontine_round",
+        null=False,
+        blank=False,
+    )
+    end_date = models.ForeignKey(
+        to=Meeting,
+        on_delete=models.SET_NULL,
+        related_name="end_tontine_round",
+        null=True,
+        blank=True,
+    )
+    pots = models.FloatField(verbose_name="NB Noms", default=1, null=False, blank=False)
+    amount_per_pot = models.DecimalField(
+        max_digits=10, decimal_places=2, default=0.0, null=False, blank=False
+    )
+
+    def __str__(self):
+        return f"START: {self.start}-END: {self.end}"
+
+    @property
+    def start(self):
+        return display_date(self.start_date.date) if self.start_date else "-"
+
+    @property
+    def end(self):
+        return display_date(self.end_date.date) if self.end_date else "-"
+
+    class Meta:
+        verbose_name = "Tontine Round"
+        verbose_name_plural = "Tontine Rounds"
+        ordering = ["-start_date__date"]

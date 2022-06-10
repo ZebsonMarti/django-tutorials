@@ -41,3 +41,8 @@ class ReceptionRoundAdmin(admin.ModelAdmin):
 @admin.register(m.Hosts)
 class HostsAdmin(admin.ModelAdmin):
     list_display = ['reception_round', 'meeting', 'member']
+
+
+@admin.register(m.TontineRound)
+class TontineAdmin(admin.ModelAdmin):
+    list_display = ['start', 'end', 'pots', 'amount_per_pot']
