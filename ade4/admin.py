@@ -33,3 +33,6 @@ class MemberAdmin(admin.ModelAdmin):
     list_display = ['email', 'name', 'reg_date', 'address', 'member_skills']
 
 
+@admin.register(m.ReceptionRound)
+class ReceptionRoundAdmin(admin.ModelAdmin):
+    list_display = ['start', 'end']
