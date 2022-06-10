@@ -18,3 +18,11 @@ class AddressAdmin(admin.ModelAdmin):
 @admin.register(m.Constants)
 class ConstantAdmin(admin.ModelAdmin):
     list_display = ['title', 'amount']
+
+
+@admin.register(m.Meeting)
+class MeetingAdmin(admin.ModelAdmin):
+    list_display = ['date', 'get_date', 'address']
+
+    def get_date(self, obj):
+        return obj.date.strftime('%d-%m-%Y')
