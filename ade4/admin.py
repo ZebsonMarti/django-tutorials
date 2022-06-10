@@ -46,3 +46,8 @@ class HostsAdmin(admin.ModelAdmin):
 @admin.register(m.TontineRound)
 class TontineAdmin(admin.ModelAdmin):
     list_display = ['start', 'end', 'pots', 'amount_per_pot']
+
+
+@admin.register(m.TontineRecipient)
+class TontineRecipientAdmin(admin.ModelAdmin):
+    list_display = ['tontine_round', 'meeting', 'member', 'received_amount']

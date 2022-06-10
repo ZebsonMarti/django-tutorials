@@ -187,3 +187,29 @@ class TontineRound(TimestampMixin):
         verbose_name = "Tontine Round"
         verbose_name_plural = "Tontine Rounds"
         ordering = ["-start_date__date"]
+
+
+class TontineRecipient(TimestampMixin):
+    tontine_round = models.ForeignKey(
+        to=ReceptionRound, on_delete=models.SET_NULL, null=True
+    )
+    meeting = models.ForeignKey(
+        to=Meeting,
+        to_field="date",
+        on_delete=models.CASCADE,
+        null=False,
+        related_name="recipient_dates",
+    )
+    member = models.ForeignKey(
+        to=Member, on_delete=models.SET_NULL, null=True, related_name="recipient_list"
+    )
+    received_amount = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False)
+
+    class Meta:
+        verbose_name = "Tontine Recipient"
+        verbose_name_plural = "Tontine Recipients"
+        ordering = ["-meeting__date", "member__name"]
+        unique_together = [("tontine_round", "meeting", "member")]
+
+    def __str__(self):
+        return f"({self.tontine_round}, {self.meeting}, {self.member})"
