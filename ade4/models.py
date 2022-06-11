@@ -293,3 +293,38 @@ class AccountType(TimestampMixin):
 
     class Meta:
         ordering = ["title"]
+
+
+class Transaction(TimestampMixin):
+    class Meta:
+        abstract = True
+
+    meeting = models.ForeignKey(
+        to=Meeting, on_delete=models.DO_NOTHING, null=False, blank=False
+    )
+    account = models.ForeignKey(
+        to=AccountType, on_delete=models.DO_NOTHING, null=False, blank=False
+    )
+    title = models.CharField(max_length=255, null=False, blank=False)
+    amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+
+
+class MemberTransaction(Transaction):
+    member = models.ForeignKey(
+        to=Member, on_delete=models.DO_NOTHING, null=False, blank=False
+    )
+
+    class Meta:
+        verbose_name = "Member Transaction"
+        verbose_name_plural = "Member Transactions"
+        ordering = ["-created_at"]
+
+    def transaction(self):
+        return f"{self.meeting.date}," \
+               f" {self.member.name}, " \
+               f"{self.title.upper()}, " \
+               f"{self.account.title.upper()}, " \
+               f"{self.amount}"
+
+    def __str__(self):
+        return self.transaction()
