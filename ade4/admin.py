@@ -58,4 +58,6 @@ class BoardAdmin(admin.ModelAdmin):
     list_display = ['start', 'end']
 
 
-a
+@admin.register(m.BoardPosition)
+class BoardPositionAdmin(admin.ModelAdmin):
+    list_display = ['title', 'created_at', 'updated_at']

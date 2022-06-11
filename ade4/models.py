@@ -248,3 +248,10 @@ class Board(TimestampMixin):
         verbose_name = "Board"
         verbose_name_plural = "Boards"
         ordering = ["-start_date__date"]
+
+
+class BoardPosition(TimestampMixin):
+    title = models.CharField(verbose_name='Poste', max_length=100, unique=True, null=False, blank=False)
+
+    def __str__(self):
+        return self.title.upper() if self.title else ""
