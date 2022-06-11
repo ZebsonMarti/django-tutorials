@@ -296,6 +296,11 @@ class AccountType(TimestampMixin):
 
 
 class Transaction(TimestampMixin):
+    transaction = None
+
+    def __str__(self):
+        return self.transaction
+
     class Meta:
         abstract = True
 
@@ -319,12 +324,23 @@ class MemberTransaction(Transaction):
         verbose_name_plural = "Member Transactions"
         ordering = ["-created_at"]
 
+    @property
     def transaction(self):
-        return f"{self.meeting.date}," \
-               f" {self.member.name}, " \
-               f"{self.title.upper()}, " \
-               f"{self.account.title.upper()}, " \
-               f"{self.amount}"
+        return (
+            f"{self.meeting.date},"
+            f" {self.member.name}, "
+            f"{self.title.upper()}, "
+            f"{self.account.title.upper()}, "
+            f"{self.amount}"
+        )
 
-    def __str__(self):
-        return self.transaction()
+
+class OrgTransaction(Transaction):
+    @property
+    def transaction(self):
+        return (
+            f"{self.meeting.date},"
+            f"{self.title.upper()}, "
+            f"{self.account.title.upper()}, "
+            f"{self.amount}"
+        )

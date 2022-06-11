@@ -78,3 +78,8 @@ class AccountTypeAdmin(admin.ModelAdmin):
 @admin.register(m.MemberTransaction)
 class MemberTransactionAdmin(admin.ModelAdmin):
     list_display = ['transaction']
+
+
+@admin.register(m.OrgTransaction)
+class OrgTransactionAdmin(admin.ModelAdmin):
+    list_display = ['transaction']
