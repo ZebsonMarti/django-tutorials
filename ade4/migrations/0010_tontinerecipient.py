@@ -7,25 +7,56 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ade4', '0009_tontineround'),
+        ("ade4", "0009_tontineround"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='TontineRecipient',
+            name="TontineRecipient",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('meeting', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='recipient_dates', to='ade4.meeting', to_field='date')),
-                ('member', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='recipient_list', to='ade4.member')),
-                ('tontine_round', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='ade4.receptionround')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "meeting",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="recipient_dates",
+                        to="ade4.meeting",
+                        to_field="date",
+                    ),
+                ),
+                (
+                    "member",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="recipient_list",
+                        to="ade4.member",
+                    ),
+                ),
+                (
+                    "tontine_round",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="ade4.receptionround",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Tontine Recipient',
-                'verbose_name_plural': 'Tontine Recipients',
-                'ordering': ['-meeting__date', 'member__name'],
-                'unique_together': {('tontine_round', 'meeting', 'member')},
+                "verbose_name": "Tontine Recipient",
+                "verbose_name_plural": "Tontine Recipients",
+                "ordering": ["-meeting__date", "member__name"],
+                "unique_together": {("tontine_round", "meeting", "member")},
             },
         ),
     ]

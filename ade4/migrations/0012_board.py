@@ -7,23 +7,49 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ade4', '0011_tontinerecipient_received_amount'),
+        ("ade4", "0011_tontinerecipient_received_amount"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Board',
+            name="Board",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('end_date', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='end_board', to='ade4.meeting', to_field='date')),
-                ('start_date', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='start_board', to='ade4.meeting', to_field='date')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "end_date",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="end_board",
+                        to="ade4.meeting",
+                        to_field="date",
+                    ),
+                ),
+                (
+                    "start_date",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="start_board",
+                        to="ade4.meeting",
+                        to_field="date",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Board',
-                'verbose_name_plural': 'Boards',
-                'ordering': ['-start_date__date'],
+                "verbose_name": "Board",
+                "verbose_name_plural": "Boards",
+                "ordering": ["-start_date__date"],
             },
         ),
     ]

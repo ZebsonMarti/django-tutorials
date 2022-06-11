@@ -203,7 +203,9 @@ class TontineRecipient(TimestampMixin):
     member = models.ForeignKey(
         to=Member, on_delete=models.SET_NULL, null=True, related_name="recipient_list"
     )
-    received_amount = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False)
+    received_amount = models.DecimalField(
+        max_digits=10, decimal_places=2, null=False, blank=False
+    )
 
     class Meta:
         verbose_name = "Tontine Recipient"
@@ -251,22 +253,43 @@ class Board(TimestampMixin):
 
 
 class BoardPosition(TimestampMixin):
-    title = models.CharField(verbose_name='Poste', max_length=100, unique=True, null=False, blank=False)
+    title = models.CharField(
+        verbose_name="Poste", max_length=100, unique=True, null=False, blank=False
+    )
 
     def __str__(self):
         return self.title.upper() if self.title else ""
 
 
 class BoardMember(TimestampMixin):
-    board = models.ForeignKey(to=Board, null=True, on_delete=models.SET_NULL, blank=True)
-    member = models.ForeignKey(to=Member, null=True, on_delete=models.SET_NULL, blank=False)
-    position = models.ForeignKey(to=BoardPosition, null=True, on_delete=models.SET_NULL, blank=True)
+    board = models.ForeignKey(
+        to=Board, null=True, on_delete=models.SET_NULL, blank=True
+    )
+    member = models.ForeignKey(
+        to=Member, null=True, on_delete=models.SET_NULL, blank=False
+    )
+    position = models.ForeignKey(
+        to=BoardPosition, null=True, on_delete=models.SET_NULL, blank=True
+    )
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ["-created_at"]
 
     def __str__(self):
         return self.poste()
 
     def poste(self):
         return f"Bureau {self.board.id} -> {self.position.title.upper()}: {self.member.name.upper()}"
+
+
+class AccountType(TimestampMixin):
+    title = models.CharField(
+        verbose_name="Name", max_length=30, unique=True, null=False, blank=False
+    )
+    code = models.CharField(verbose_name="Code", max_length=5, null=False, blank=False)
+
+    def __str__(self):
+        return self.title.upper()
+
+    class Meta:
+        ordering = ["title"]

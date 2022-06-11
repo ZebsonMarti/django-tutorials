@@ -7,22 +7,53 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ade4', '0013_boardposition'),
+        ("ade4", "0013_boardposition"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='BoardMember',
+            name="BoardMember",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('board', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='ade4.board')),
-                ('member', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='ade4.member')),
-                ('position', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='ade4.boardposition')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "board",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="ade4.board",
+                    ),
+                ),
+                (
+                    "member",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="ade4.member",
+                    ),
+                ),
+                (
+                    "position",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="ade4.boardposition",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]
