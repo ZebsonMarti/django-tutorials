@@ -61,3 +61,8 @@ class BoardAdmin(admin.ModelAdmin):
 @admin.register(m.BoardPosition)
 class BoardPositionAdmin(admin.ModelAdmin):
     list_display = ['title', 'created_at', 'updated_at']
+
+
+@admin.register(m.BoardMember)
+class BoardMemberAdmin(admin.ModelAdmin):
+    list_display = ['poste', 'created_at', 'updated_at']

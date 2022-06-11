@@ -255,3 +255,18 @@ class BoardPosition(TimestampMixin):
 
     def __str__(self):
         return self.title.upper() if self.title else ""
+
+
+class BoardMember(TimestampMixin):
+    board = models.ForeignKey(to=Board, null=True, on_delete=models.SET_NULL, blank=True)
+    member = models.ForeignKey(to=Member, null=True, on_delete=models.SET_NULL, blank=False)
+    position = models.ForeignKey(to=BoardPosition, null=True, on_delete=models.SET_NULL, blank=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.poste()
+
+    def poste(self):
+        return f"Bureau {self.board.id} -> {self.position.title.upper()}: {self.member.name.upper()}"
