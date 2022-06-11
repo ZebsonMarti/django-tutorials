@@ -213,3 +213,38 @@ class TontineRecipient(TimestampMixin):
 
     def __str__(self):
         return f"({self.tontine_round}, {self.meeting}, {self.member})"
+
+
+class Board(TimestampMixin):
+    start_date = models.ForeignKey(
+        to=Meeting,
+        to_field="date",
+        null=False,
+        blank=False,
+        on_delete=models.CASCADE,
+        related_name="start_board",
+    )
+    end_date = models.ForeignKey(
+        to=Meeting,
+        to_field="date",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="end_board",
+    )
+
+    def __str__(self):
+        return f"START: {self.start}-END: {self.end}"
+
+    @property
+    def start(self):
+        return display_date(self.start_date.date) if self.start_date else "-"
+
+    @property
+    def end(self):
+        return display_date(self.end_date.date) if self.end_date else "-"
+
+    class Meta:
+        verbose_name = "Board"
+        verbose_name_plural = "Boards"
+        ordering = ["-start_date__date"]

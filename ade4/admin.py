@@ -51,3 +51,11 @@ class TontineAdmin(admin.ModelAdmin):
 @admin.register(m.TontineRecipient)
 class TontineRecipientAdmin(admin.ModelAdmin):
     list_display = ['tontine_round', 'meeting', 'member', 'received_amount']
+
+
+@admin.register(m.Board)
+class BoardAdmin(admin.ModelAdmin):
+    list_display = ['start', 'end']
+
+
+a
