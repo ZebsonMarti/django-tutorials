@@ -36,7 +36,7 @@ class MeetingAdmin(admin.ModelAdmin):
 
 @admin.register(m.Member)
 class MemberAdmin(admin.ModelAdmin):
-    list_display = ["user", "name", "reg_date", "address", "member_skills"]
+    list_display = ["user", "name", "registration_date", "address", "member_skills"]
 
 
 @admin.register(m.ReceptionRound)

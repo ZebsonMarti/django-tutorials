@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _t
 from django.contrib.auth import get_user_model
@@ -103,13 +104,51 @@ class Meeting(TimestampMixin):
 
 
 class Member(TimestampMixin):
+    MALE, FEMALE, OTHER = "MALE", "FEMALE", "OTHER"
+    GENDER = [
+        (MALE, _t("Homme")),
+        (FEMALE, _t("Femme")),
+        (OTHER, _t("Autre")),
+    ]
+    # Used to render the gender in template
+    GENDER_DICT = dict(GENDER)
+
+    ACTIVE, INACTIVE, PENDING = "ACTIVE", "INACTIVE", "PENDING"
+    MEMBER_STATUS = [
+        (ACTIVE, _t("Actif")),
+        (INACTIVE, _t("Inactif")),
+        (PENDING, _t("En cours")),
+    ]
+    # Used to render the member status in template
+    STATUS_DICT = dict(MEMBER_STATUS)
+
+    VILLAGES = [
+        ("FOTETSA", "Fotetsa"),
+        ("FONGO-NDENG", "Fongo-Ndeng"),
+        ("FOSSONG-WENTCHENG", "Fossong-Wentcheng"),
+        ("FONDONERA", "Fondonera"),
+    ]
+
     user = models.OneToOneField(
         to=User, on_delete=models.DO_NOTHING, null=False, blank=False
     )
-    name = models.CharField(verbose_name="Full Name", max_length=100)
-    register_date = models.ForeignKey(
-        to=Meeting, to_field="date", null=True, on_delete=models.SET_NULL
+    first_name = models.CharField(verbose_name=_t("Prénom"), max_length=255)
+    last_name = models.CharField(verbose_name=_t("Nom"), max_length=255)
+    sex = models.CharField(verbose_name=_t("Sexe"), max_length=6, choices=GENDER)
+    phone = models.CharField(
+        verbose_name=_t("N° Téléphone"), max_length=30, null=True, blank=True
     )
+    status = models.CharField(
+        verbose_name=_t("Statut"), max_length=10, choices=MEMBER_STATUS, default=PENDING
+    )
+    village = models.CharField(
+        verbose_name=_t("Village"), max_length=20, choices=VILLAGES
+    )
+
+    # name = models.CharField(verbose_name="Full Name", max_length=100)
+    # register_date = models.ForeignKey(
+    #     to=Meeting, to_field="date", null=True, on_delete=models.SET_NULL
+    # )
     address = models.ForeignKey(
         to=Address,
         on_delete=models.SET_NULL,
@@ -117,7 +156,42 @@ class Member(TimestampMixin):
         blank=True,
         to_field="raw_address",
     )
+    registration_date = models.ForeignKey(
+        to=Meeting, on_delete=models.SET_NULL, null=True
+    )
+    registration_fee = models.DecimalField(
+        verbose_name=_t("Montant Inscription"),
+        max_digits=10,
+        decimal_places=2,
+        default=0.0,
+        validators=[
+            MinValueValidator(
+                limit_value=0.0,
+                message=_t("Le montant de l'inscription ne peut être négatif"),
+            )
+        ],
+    )
+    # Fond de roulement
+    operation_fee = models.DecimalField(
+        verbose_name=_t("Montant Inscription"),
+        max_digits=10,
+        decimal_places=2,
+        default=0.0,
+        validators=[
+            MinValueValidator(
+                limit_value=0.0,
+                message=_t("Le montant de l'inscription ne peut être négatif"),
+            )
+        ],
+    )
+    profession = models.CharField(
+        verbose_name=_t("Profession"), max_length=100, null=True, blank=True
+    )
     skills = models.ManyToManyField(to=Skill)
+
+    @property
+    def name(self):
+        return f"{self.first_name} {self.last_name}"
 
     def __str__(self):
         return self.name
@@ -127,7 +201,15 @@ class Member(TimestampMixin):
         return "/".join(s) if s else ""
 
     def reg_date(self):
-        return display_date(self.register_date.date)
+        return display_date(self.registration_date.date)
+
+    @property
+    def gender(self):
+        return Member.GENDER_DICT.get(self.sex)
+
+    @property
+    def membership_status(self):
+        return Member.STATUS_DICT.get(self.status)
 
 
 class ReceptionRound(TimestampMixin):
@@ -183,7 +265,7 @@ class Hosts(TimestampMixin):
     class Meta:
         verbose_name = "Hosts"
         verbose_name_plural = "Hosts"
-        ordering = ["-meeting__date", "member__name"]
+        ordering = ["-meeting__date", "member__first_name"]
         unique_together = [("reception_round", "meeting", "member")]
 
     def __str__(self):
@@ -248,7 +330,7 @@ class TontineRecipient(TimestampMixin):
     class Meta:
         verbose_name = "Tontine Recipient"
         verbose_name_plural = "Tontine Recipients"
-        ordering = ["-meeting__date", "member__name"]
+        ordering = ["-meeting__date", "member__first_name"]
         unique_together = [("tontine_round", "meeting", "member")]
 
     def __str__(self):
