@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 # Create your models here.
 
-User = get_user_model()
+# User = get_user_model()
 
 
 def display_date(date):
@@ -15,6 +15,17 @@ class TimestampMixin(models.Model):
 
     class Meta:
         abstract = True
+
+
+class User(TimestampMixin):
+    email = models.EmailField(
+        verbose_name='Email',
+        max_length=255,
+        unique=True
+    )
+
+    def __str__(self):
+        return self.email
 
 
 class Skill(TimestampMixin):

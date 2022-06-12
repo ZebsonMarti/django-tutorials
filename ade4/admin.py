@@ -6,6 +6,10 @@ from . import models as m
 
 # admin.site.register(m.Skill)
 
+@admin.register(m.User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ['email', 'created_at', 'updated_at']
+
 
 @admin.register(m.Skill)
 class SkillAdmin(admin.ModelAdmin):
