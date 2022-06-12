@@ -1,6 +1,8 @@
 from django.db import models
-
+from django.contrib.auth import get_user_model
 # Create your models here.
+
+User = get_user_model()
 
 
 def display_date(date):
@@ -67,7 +69,7 @@ class Meeting(TimestampMixin):
 
 
 class Member(TimestampMixin):
-    email = models.EmailField(unique=True)
+    user = models.OneToOneField(to=User, on_delete=models.DO_NOTHING, null=False, blank=False)
     name = models.CharField(verbose_name="Full Name", max_length=100)
     register_date = models.ForeignKey(
         to=Meeting, to_field="date", null=True, on_delete=models.SET_NULL
@@ -82,7 +84,7 @@ class Member(TimestampMixin):
     skills = models.ManyToManyField(to=Skill)
 
     def __str__(self):
-        return self.email
+        return self.name
 
     def member_skills(self):
         s = [skill.title for skill in self.skills.all()] if self.id else []

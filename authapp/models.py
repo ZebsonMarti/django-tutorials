@@ -58,3 +58,6 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     # email and password will be required by default
     REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return self.email
