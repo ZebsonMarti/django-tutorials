@@ -357,3 +357,14 @@ class OrgTransaction(Transaction):
             f"{self.account.title.upper()}, "
             f"{self.amount}"
         )
+
+
+class DocType(TimestampMixin):
+    title = models.CharField(verbose_name='Intitulé', max_length=255, unique=True)
+
+    class Meta:
+        verbose_name = 'Type Document'
+        verbose_name_plural = 'Type Documents'
+
+    def __str__(self):
+        return self.title.upper()

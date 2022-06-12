@@ -87,3 +87,8 @@ class MemberTransactionAdmin(admin.ModelAdmin):
 @admin.register(m.OrgTransaction)
 class OrgTransactionAdmin(admin.ModelAdmin):
     list_display = ['transaction']
+
+
+@admin.register(m.DocType)
+class DocTypeAdmin(admin.ModelAdmin):
+    list_display = ['title', 'created_at', 'updated_at']
