@@ -218,6 +218,7 @@ members = [
         "address": choice(raw_addresses),
         "phone": choice(phones),
         "village": choice(villages),
+        "profession": choice(skills),
     },
     {
         "email": "ladyponce@f4.com",
@@ -303,6 +304,8 @@ members = [
         "sex": "FEMALE",
         "registration_date": "2021-02-07",
         "address": choice(raw_addresses),
+        "phone": choice(phones),
+        "village": choice(villages),
         "profession": choice(skills),
     },
     {

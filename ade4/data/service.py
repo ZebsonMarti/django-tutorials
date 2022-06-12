@@ -57,7 +57,7 @@ def insert_members_and_users(member_list: List[Dict]) -> bool:
         for m in member_list:
             # Create the User
             email = m["email"]
-            user = User.objects.create(email=email)
+            user, _ = User.objects.get_or_create(email=email)
 
             # Registration Date
             try:
@@ -72,7 +72,6 @@ def insert_members_and_users(member_list: List[Dict]) -> bool:
             members.append(
                 Member(
                     user=user,
-                    email=email,
                     first_name=m["first_name"],
                     last_name=m["last_name"],
                     sex=m["sex"],
@@ -83,7 +82,7 @@ def insert_members_and_users(member_list: List[Dict]) -> bool:
                     registration_date=meeting,
                     registration_fee=10,
                     operation_fee=15,
-                    profession=m["profession"],
+                    profession=m["profession"]
                 )
             )
         _ = Member.objects.bulk_create(members)

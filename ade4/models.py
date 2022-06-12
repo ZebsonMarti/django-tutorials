@@ -157,7 +157,7 @@ class Member(TimestampMixin):
         to_field="raw_address",
     )
     registration_date = models.ForeignKey(
-        to=Meeting, on_delete=models.SET_NULL, null=True
+        to=Meeting, on_delete=models.DO_NOTHING, null=True, editable=False
     )
     registration_fee = models.DecimalField(
         verbose_name=_t("Montant Inscription"),
