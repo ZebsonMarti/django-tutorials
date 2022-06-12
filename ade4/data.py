@@ -2,6 +2,10 @@
 
 
 # Address
+addresses = [
+
+]
+
 
 # Constants
 
@@ -38,3 +42,17 @@
 # BoardPosition
 
 # BoardMember
+
+# AccountType
+
+# Transaction
+
+# MemberTransaction
+
+# OrgTransaction
+
+# DocumentType
+
+# DocumentChapter
+
+# DocumentArticle

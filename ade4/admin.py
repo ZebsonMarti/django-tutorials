@@ -97,3 +97,8 @@ class DocumentTypeAdmin(admin.ModelAdmin):
 @admin.register(m.DocumentChapter)
 class DocumentChapterAdmin(admin.ModelAdmin):
     list_display = ['doc_type', 'chapter_number', 'title', 'created_at', 'updated_at']
+
+
+@admin.register(m.DocumentArticle)
+class DocumentArticleAdmin(admin.ModelAdmin):
+    list_display = ['article_number', 'content', 'chapter']

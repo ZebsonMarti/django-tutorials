@@ -1,5 +1,7 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _t
 from django.contrib.auth import get_user_model
+
 # Create your models here.
 
 # User = get_user_model()
@@ -18,11 +20,7 @@ class TimestampMixin(models.Model):
 
 
 class User(TimestampMixin):
-    email = models.EmailField(
-        verbose_name='Email',
-        max_length=255,
-        unique=True
-    )
+    email = models.EmailField(verbose_name="Email", max_length=255, unique=True)
 
     def __str__(self):
         return self.email
@@ -61,11 +59,30 @@ class Constants(TimestampMixin):
 
 
 class Meeting(TimestampMixin):
+    REGULAR = "REGULAR"
+    EXTRA = "EXTRAORDINARY"
+    MEETING_TYPES = [
+        (REGULAR, _t("Séance Ordinaire")),
+        (EXTRA, _t("Séance Extraordinaire")),
+    ]
     date = models.DateField(verbose_name="Date", unique=True)
     address = models.ForeignKey(to=Address, default="", on_delete=models.SET_DEFAULT)
     hosts = models.ManyToManyField(
         to="Member", related_name="hosted_meetings", through="Hosts"
     )
+    type = models.CharField(
+        verbose_name=_t("Type Séance"),
+        max_length=15,
+        choices=MEETING_TYPES,
+        default=REGULAR,
+    )
+    agenda = models.CharField(
+        verbose_name=_t("Ordre du jour"), max_length=255, null=True, blank=True
+    )
+    report = models.TextField(verbose_name=_t("Rapport"), null=True, blank=True)
+    finance_ok = models.BooleanField(verbose_name=_t("Finances OK?"), default=False)
+    sanction_ok = models.BooleanField(verbose_name=_t("Sanctions OK?"), default=False)
+    validated = models.BooleanField(verbose_name=_t("Séance Validée"), default=False)
 
     class Meta:
         verbose_name = "Meeting"
@@ -78,9 +95,17 @@ class Meeting(TimestampMixin):
         h = [host.name for host in self.hosts.all()] if self.hosts else []
         return " / ".join(h)
 
+    MEETING_TYPES_DICT = dict(MEETING_TYPES)
+
+    @property
+    def meeting_type(self):
+        return Meeting.MEETING_TYPES_DICT.get(self.type)
+
 
 class Member(TimestampMixin):
-    user = models.OneToOneField(to=User, on_delete=models.DO_NOTHING, null=False, blank=False)
+    user = models.OneToOneField(
+        to=User, on_delete=models.DO_NOTHING, null=False, blank=False
+    )
     name = models.CharField(verbose_name="Full Name", max_length=100)
     register_date = models.ForeignKey(
         to=Meeting, to_field="date", null=True, on_delete=models.SET_NULL
@@ -360,25 +385,55 @@ class OrgTransaction(Transaction):
 
 
 class DocumentType(TimestampMixin):
-    title = models.CharField(verbose_name='Intitulé', max_length=255, unique=True)
+    title = models.CharField(verbose_name="Intitulé", max_length=255, unique=True)
 
     class Meta:
-        verbose_name = 'Document Type'
-        verbose_name_plural = 'Document Types'
+        verbose_name = "Document Type"
+        verbose_name_plural = "Document Types"
 
     def __str__(self):
         return self.title.upper()
 
 
 class DocumentChapter(TimestampMixin):
-    title = models.CharField(verbose_name='Intitulé', max_length=255)
-    chapter_number = models.PositiveSmallIntegerField(verbose_name='N°', null=False, blank=True)
-    doc_type = models.ForeignKey(to=DocumentType, on_delete=models.CASCADE, null=False, blank=False, related_name='chapters')
+    title = models.CharField(verbose_name="Intitulé", max_length=255)
+    chapter_number = models.PositiveSmallIntegerField(
+        verbose_name="N°", null=False, blank=True
+    )
+    doc_type = models.ForeignKey(
+        to=DocumentType,
+        on_delete=models.CASCADE,
+        null=False,
+        blank=False,
+        related_name="chapters",
+    )
 
     class Meta:
-        verbose_name = 'Document Chapter'
-        verbose_name_plural = 'Document Chapters'
-        ordering = ['doc_type', 'title']
+        verbose_name = "Document Chapter"
+        verbose_name_plural = "Document Chapters"
+        ordering = ["doc_type", "title"]
 
     def __str__(self):
         return f"{self.doc_type}: {self.chapter_number} - {self.title.upper()}"
+
+
+class DocumentArticle(TimestampMixin):
+    content = models.CharField(verbose_name="Intitulé", max_length=255)
+    article_number = models.PositiveSmallIntegerField(
+        verbose_name="N°", null=False, blank=True
+    )
+    chapter = models.ForeignKey(
+        to=DocumentChapter,
+        on_delete=models.CASCADE,
+        null=False,
+        blank=False,
+        related_name="articles",
+    )
+
+    class Meta:
+        verbose_name = "Document Article"
+        verbose_name_plural = "Document Articles"
+        ordering = ["chapter__doc_type", "chapter", "article_number"]
+
+    def __str__(self):
+        return f"{self.chapter.doc_type}-{self.chapter}: {self.article_number} - {self.content.title()}"
