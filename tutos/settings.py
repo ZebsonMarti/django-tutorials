@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # Third Party Apps
 
     # Own Apps
+    'authapp.apps.AuthappConfig',
     'home.apps.HomeConfig',
     'ade4.apps.Ade4Config',
 ]
@@ -132,3 +133,5 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTH_USER_MODEL = 'authapp.User'
