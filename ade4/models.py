@@ -359,12 +359,26 @@ class OrgTransaction(Transaction):
         )
 
 
-class DocType(TimestampMixin):
+class DocumentType(TimestampMixin):
     title = models.CharField(verbose_name='Intitulé', max_length=255, unique=True)
 
     class Meta:
-        verbose_name = 'Type Document'
-        verbose_name_plural = 'Type Documents'
+        verbose_name = 'Document Type'
+        verbose_name_plural = 'Document Types'
 
     def __str__(self):
         return self.title.upper()
+
+
+class DocumentChapter(TimestampMixin):
+    title = models.CharField(verbose_name='Intitulé', max_length=255)
+    chapter_number = models.PositiveSmallIntegerField(verbose_name='N°', null=False, blank=True)
+    doc_type = models.ForeignKey(to=DocumentType, on_delete=models.CASCADE, null=False, blank=False, related_name='chapters')
+
+    class Meta:
+        verbose_name = 'Document Chapter'
+        verbose_name_plural = 'Document Chapters'
+        ordering = ['doc_type', 'title']
+
+    def __str__(self):
+        return f"{self.doc_type}: {self.chapter_number} - {self.title.upper()}"
