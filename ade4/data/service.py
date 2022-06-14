@@ -82,9 +82,32 @@ def insert_members_and_users(member_list: List[Dict]) -> bool:
                     registration_date=meeting,
                     registration_fee=10,
                     operation_fee=15,
-                    profession=m["profession"]
+                    profession=m["profession"],
                 )
             )
         _ = Member.objects.bulk_create(members)
+        return True
+    return False
+
+
+def insert_reception_rounds(rounds: List[Dict]) -> bool:
+    table_empty = ReceptionRound.objects.all().count() == 0
+    if table_empty:
+        rr = []
+        for r in rounds:
+            start_date = r.get("start", "")
+            end_date = r.get("end", "")
+            start_meeting = (
+                Meeting.objects.filter(date=date.fromisoformat(start_date)).first()
+                if start_date
+                else None
+            )
+            end_meeting = (
+                Meeting.objects.filter(date=date.fromisoformat(end_date)).first()
+                if end_date
+                else None
+            )
+            rr.append(ReceptionRound(start_date=start_meeting, end_date=end_meeting))
+        _ = ReceptionRound.objects.bulk_create(rr)
         return True
     return False

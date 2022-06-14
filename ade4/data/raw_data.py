@@ -64,37 +64,77 @@ def mt():
     return "REGULAR" if random() < 0.9 else "EXTRAORDINARY"
 
 
+m_02_2018 = {"date": "2018-02-01", "address": choice(raw_addresses), "type": mt()}
+m_04_2018 = {"date": "2018-04-01", "address": choice(raw_addresses), "type": mt()}
+m_06_2018 = {"date": "2018-06-01", "address": choice(raw_addresses), "type": mt()}
+m_08_2018 = {"date": "2018-08-01", "address": choice(raw_addresses), "type": mt()}
+m_10_2018 = {"date": "2018-10-01", "address": choice(raw_addresses), "type": mt()}
+m_12_2018 = {"date": "2018-12-01", "address": choice(raw_addresses), "type": mt()}
+m_02_2019 = {"date": "2019-02-01", "address": choice(raw_addresses), "type": mt()}
+m_04_2019 = {"date": "2019-04-01", "address": choice(raw_addresses), "type": mt()}
+m_06_2019 = {"date": "2019-06-01", "address": choice(raw_addresses), "type": mt()}
+m_08_2019 = {"date": "2019-08-01", "address": choice(raw_addresses), "type": mt()}
+m_10_2019 = {"date": "2019-10-01", "address": choice(raw_addresses), "type": mt()}
+m_12_2019 = {"date": "2019-12-01", "address": choice(raw_addresses), "type": mt()}
+m_02_2020 = {"date": "2020-02-01", "address": choice(raw_addresses), "type": mt()}
+m_04_2020 = {"date": "2020-04-01", "address": choice(raw_addresses), "type": mt()}
+m_06_2020 = {"date": "2020-06-01", "address": choice(raw_addresses), "type": mt()}
+m_08_2020 = {"date": "2020-08-01", "address": choice(raw_addresses), "type": mt()}
+m_10_2020 = {"date": "2020-10-01", "address": choice(raw_addresses), "type": mt()}
+m_12_2020 = {"date": "2020-12-01", "address": choice(raw_addresses), "type": mt()}
+m_02_2021 = {"date": "2021-02-01", "address": choice(raw_addresses), "type": mt()}
+m_04_2021 = {"date": "2021-04-01", "address": choice(raw_addresses), "type": mt()}
+m_06_2021 = {"date": "2021-06-01", "address": choice(raw_addresses), "type": mt()}
+m_08_2021 = {"date": "2021-08-01", "address": choice(raw_addresses), "type": mt()}
+m_10_2021 = {"date": "2021-10-01", "address": choice(raw_addresses), "type": mt()}
+m_12_2021 = {"date": "2021-12-01", "address": choice(raw_addresses), "type": mt()}
+m_02_2022 = {"date": "2022-02-01", "address": choice(raw_addresses), "type": mt()}
+m_04_2022 = {"date": "2022-04-01", "address": choice(raw_addresses), "type": mt()}
+m_06_2022 = {"date": "2022-06-01", "address": choice(raw_addresses), "type": mt()}
+m_08_2022 = {"date": "2022-08-01", "address": choice(raw_addresses), "type": mt()}
+m_10_2022 = {"date": "2022-10-01", "address": choice(raw_addresses), "type": mt()}
+m_12_2022 = {"date": "2022-12-01", "address": choice(raw_addresses), "type": mt()}
+m_02_2023 = {"date": "2023-02-01", "address": choice(raw_addresses), "type": mt()}
+m_04_2023 = {"date": "2023-04-01", "address": choice(raw_addresses), "type": mt()}
+m_06_2023 = {"date": "2023-06-01", "address": choice(raw_addresses), "type": mt()}
+
 meetings = [
-    {"date": "2018-02-01", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2018-04-01", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2018-06-01", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2018-08-01", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2018-10-01", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2018-12-01", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2019-02-01", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2019-04-01", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2019-06-01", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2019-08-01", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2019-10-06", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2019-12-01", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2020-02-02", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2020-04-05", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2020-06-07", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2020-08-02", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2020-10-04", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2020-12-06", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2021-02-07", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2021-04-04", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2021-06-04", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2021-08-04", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2021-10-05", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2021-12-05", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2022-02-05", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2022-04-02", "address": choice(raw_addresses), "type": mt()},
-    {"date": "2022-06-05", "address": choice(raw_addresses), "type": mt()},
+    m_02_2018,
+    m_04_2018,
+    m_06_2018,
+    m_08_2018,
+    m_10_2018,
+    m_12_2018,
+    m_02_2019,
+    m_04_2019,
+    m_06_2019,
+    m_08_2019,
+    m_10_2019,
+    m_12_2019,
+    m_02_2020,
+    m_04_2020,
+    m_06_2020,
+    m_08_2020,
+    m_10_2020,
+    m_12_2020,
+    m_02_2021,
+    m_04_2021,
+    m_06_2021,
+    m_08_2021,
+    m_10_2021,
+    m_12_2021,
+    m_02_2022,
+    m_04_2022,
+    m_06_2022,
+    m_08_2022,
+    m_10_2022,
+    m_12_2022,
+    m_02_2023,
+    m_04_2023,
+    m_06_2023,
 ]
 
-# Member
+# Member and User
 
 phones = [
     "+32 489 32 18 74",
@@ -130,252 +170,781 @@ villages = [
     "FOSSONG-WENTCHENG",
     "FONDONERA",
 ]
+john_smith = {
+    "email": "johnsmith@f4.com",
+    "first_name": "John",
+    "last_name": "Smith",
+    "sex": "MALE",
+    "registration_date": m_02_2018,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+julia_roberts = {
+    "email": "juliaroberts@f4.com",
+    "first_name": "Julia",
+    "last_name": "Roberts",
+    "sex": "FEMALE",
+    "registration_date": m_02_2018,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+angelina_jolie = {
+    "email": "ajolie@f4.com",
+    "first_name": "Angelina",
+    "last_name": "Jolie",
+    "sex": "FEMALE",
+    "registration_date": m_02_2018,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+longue = {
+    "email": "llongue@f4.com",
+    "first_name": "Longue",
+    "last_name": "Longue",
+    "sex": "MALE",
+    "registration_date": m_02_2018,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+petit_pays = {
+    "email": "ppays@f4.com",
+    "first_name": "Petit",
+    "last_name": "Pays",
+    "sex": "MALE",
+    "registration_date": m_02_2018,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+tom_cruise = {
+    "email": "tomcruise@f4.com",
+    "first_name": "Tom",
+    "last_name": "cruise",
+    "sex": "MALE",
+    "registration_date": m_02_2018,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+avero = {
+    "email": "averodjess@f4.com",
+    "first_name": "Avero",
+    "last_name": "Djess",
+    "sex": "MALE",
+    "registration_date": m_02_2018,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+nyangono = {
+    "email": "ndusud@f4.com",
+    "first_name": "Nyangono",
+    "last_name": "Du Sud",
+    "sex": "MALE",
+    "registration_date": m_02_2018,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+lady_ponce = {
+    "email": "ladyponce@f4.com",
+    "first_name": "Lady",
+    "last_name": "Ponce",
+    "sex": "FEMALE",
+    "registration_date": m_02_2018,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+manu_dibango = {
+    "email": "manudibando@f4.com",
+    "first_name": "Manu",
+    "last_name": "Dibango",
+    "sex": "MALE",
+    "registration_date": m_02_2018,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+malhox = {
+    "email": "malhox@f4.com",
+    "first_name": "Malhox",
+    "last_name": "Le vibeur",
+    "sex": "MALE",
+    "registration_date": m_02_2019,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+petit_bozard = {
+    "email": "petitbozard@f4.com",
+    "first_name": "Petit",
+    "last_name": "Bozard",
+    "sex": "MALE",
+    "registration_date": m_02_2020,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+medecein_de_medelin = {
+    "email": "medecindemedelin@f4.com",
+    "first_name": "Médecin",
+    "last_name": "De Medelin",
+    "sex": "MALE",
+    "registration_date": m_02_2020,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+kameni = {
+    "email": "kameni@f4.com",
+    "first_name": "La Go",
+    "last_name": "Kameni",
+    "sex": "FEMALE",
+    "registration_date": m_06_2020,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+daphne = {
+    "email": "daphne@f4.com",
+    "first_name": "La Go",
+    "last_name": "Daphné",
+    "sex": "FEMALE",
+    "registration_date": m_06_2020,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+murielle_blanche = {
+    "email": "murielleb@f4.com",
+    "first_name": "Murielle",
+    "last_name": "Blanche",
+    "sex": "FEMALE",
+    "registration_date": m_02_2021,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+poupi = {
+    "email": "poupi@f4.com",
+    "first_name": "Marcelle",
+    "last_name": "Poupi",
+    "sex": "FEMALE",
+    "registration_date": m_02_2021,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+mitoumba = {
+    "email": "mitoumba@f4.com",
+    "first_name": "Mitoumba",
+    "last_name": "Manioc",
+    "sex": "MALE",
+    "registration_date": m_10_2021,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+takam = {
+    "email": "takam@f4.com",
+    "first_name": "Takam",
+    "last_name": "Le Mince",
+    "sex": "MALE",
+    "registration_date": m_10_2021,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+mbatremy = {
+    "email": "mbatremy@f4.com",
+    "first_name": "Paah",
+    "last_name": "Mbatremy",
+    "sex": "MALE",
+    "registration_date": m_10_2021,
+    "address": choice(raw_addresses),
+    "phone": choice(phones),
+    "village": choice(villages),
+    "profession": choice(skills),
+}
+
 
 members = [
+    john_smith,
+    julia_roberts,
+    angelina_jolie,
+    longue,
+    petit_pays,
+    tom_cruise,
+    avero,
+    nyangono,
+    lady_ponce,
+    manu_dibango,
+    malhox,
+    petit_bozard,
+    medecein_de_medelin,
+    kameni,
+    daphne,
+    murielle_blanche,
+    poupi,
+    mitoumba,
+    takam,
+    mbatremy,
+]
+
+# ReceptionRound
+tr_1 = {"start": m_02_2018, "end": m_10_2018}
+tr_2 = {"start": m_12_2018, "end": m_08_2019}
+tr_3 = {"start": m_10_2019, "end": m_08_2020}
+tr_4 = {"start": m_10_2020, "end": m_10_2021}
+tr_5 = {"start": m_12_2021, "end": m_06_2023}
+
+reception_rounds = [
+    tr_1,
+    tr_2,
+    tr_3,
+    tr_4,
+    tr_5,
+]
+
+# Hosts
+hosts = [
+    #  TR1
     {
-        "email": "johnsmith@f4.com",
-        "first_name": "John",
-        "last_name": "Smith",
-        "sex": "MALE",
-        "registration_date": "2018-02-01",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
+        "reception_round": tr_1,
+        "meetings": [
+            {
+                "meeting_date": m_02_2018,
+                "members": [
+                    john_smith,
+                    tom_cruise,
+                ],
+            },
+            {
+                "meeting_date": m_04_2018,
+                "members": [
+                    julia_roberts,
+                    avero,
+                ],
+            },
+            {
+                "meeting_date": m_06_2018,
+                "members": [
+                    angelina_jolie,
+                    nyangono,
+                ],
+            },
+            {
+                "meeting_date": m_08_2018,
+                "members": [
+                    longue,
+                    lady_ponce,
+                ],
+            },
+            {
+                "meeting_date": m_10_2018,
+                "members": [
+                    petit_pays,
+                    manu_dibango,
+                ],
+            },
+        ],
     },
+    #  TR2
     {
-        "email": "juliaroberts@f4.com",
-        "first_name": "Julia",
-        "last_name": "Roberts",
-        "sex": "FEMALE",
-        "registration_date": "2018-02-01",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
+        "reception_round": tr_2,
+        "meetings": [
+            {
+                "meeting_date": m_12_2018,
+                "members": [
+                    john_smith,
+                    julia_roberts,
+                ],
+            },
+            {
+                "meeting_date": m_02_2019,
+                "members": [
+                    angelina_jolie,
+                    longue,
+                ],
+            },
+            {
+                "meeting_date": m_04_2019,
+                "members": [
+                    petit_pays,
+                    tom_cruise,
+                ],
+            },
+            {
+                "meeting_date": m_06_2019,
+                "members": [
+                    avero,
+                    nyangono,
+                ],
+            },
+            {
+                "meeting_date": m_08_2019,
+                "members": [
+                    lady_ponce,
+                    manu_dibango,
+                    malhox,
+                ],
+            },
+        ],
     },
+    #  TR3
     {
-        "email": "ajolie@f4.com",
-        "first_name": "Angelina",
-        "last_name": "Jolie",
-        "sex": "FEMALE",
-        "registration_date": "2018-02-01",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
+        "reception_round": tr_3,
+        "meetings": [
+            {
+                "meeting_date": m_10_2019,
+                "members": [john_smith],
+            },
+            {
+                "meeting_date": m_12_2019,
+                "members": [
+                    julia_roberts,
+                    angelina_jolie,
+                ],
+            },
+            {
+                "meeting_date": m_02_2020,
+                "members": [
+                    longue,
+                    petit_pays,
+                ],
+            },
+            {
+                "meeting_date": m_04_2020,
+                "members": [
+                    tom_cruise,
+                    avero,
+                ],
+            },
+            {
+                "meeting_date": m_06_2020,
+                "members": [
+                    nyangono,
+                    lady_ponce,
+                ],
+            },
+            {
+                "meeting_date": m_08_2020,
+                "members": [
+                    manu_dibango,
+                    malhox,
+                ],
+            },
+        ],
     },
+    #  TR4
     {
-        "email": "llongue@f4.com",
-        "first_name": "Longue",
-        "last_name": "Longue",
-        "sex": "MALE",
-        "registration_date": "2018-02-01",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
+        "reception_round": tr_4,
+        "meetings": [
+            {
+                "meeting_date": m_10_2020,
+                "members": [
+                    daphne,
+                    kameni,
+                    medecein_de_medelin,
+                ],
+            },
+            {
+                "meeting_date": m_12_2020,
+                "members": [
+                    petit_pays,
+                    malhox,
+                ],
+            },
+            {
+                "meeting_date": m_02_2021,
+                "members": [
+                    manu_dibango,
+                    lady_ponce,
+                ],
+            },
+            {
+                "meeting_date": m_04_2021,
+                "members": [
+                    nyangono,
+                    avero,
+                ],
+            },
+            {
+                "meeting_date": m_06_2021,
+                "members": [
+                    tom_cruise,
+                    petit_pays,
+                ],
+            },
+            {
+                "meeting_date": m_08_2021,
+                "members": [
+                    longue,
+                    angelina_jolie,
+                ],
+            },
+            {
+                "meeting_date": m_10_2021,
+                "members": [
+                    julia_roberts,
+                    john_smith,
+                ],
+            },
+        ],
     },
+    #  TR5
     {
-        "email": "ppays@f4.com",
-        "first_name": "Petit",
-        "last_name": "Pays",
-        "sex": "MALE",
-        "registration_date": "2018-02-01",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
-    },
-    {
-        "email": "tomcruise@f4.com",
-        "first_name": "Tom",
-        "last_name": "cruise",
-        "sex": "MALE",
-        "registration_date": "2018-02-01",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
-    },
-    {
-        "email": "averodjess@f4.com",
-        "first_name": "Avero",
-        "last_name": "Djess",
-        "sex": "MALE",
-        "registration_date": "2018-02-01",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
-    },
-    {
-        "email": "ndusud@f4.com",
-        "first_name": "Nyangono",
-        "last_name": "Du Sud",
-        "sex": "MALE",
-        "registration_date": "2018-02-01",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
-    },
-    {
-        "email": "ladyponce@f4.com",
-        "first_name": "Lady",
-        "last_name": "Ponce",
-        "sex": "FEMALE",
-        "registration_date": "2018-02-01",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
-    },
-    {
-        "email": "manudibando@f4.com",
-        "first_name": "Manu",
-        "last_name": "Dibango",
-        "sex": "MALE",
-        "registration_date": "2018-02-01",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
-    },
-    {
-        "email": "malhox@f4.com",
-        "first_name": "Malhox",
-        "last_name": "Le vibeur",
-        "sex": "MALE",
-        "registration_date": "2019-02-01",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
-    },
-    {
-        "email": "petitbozard@f4.com",
-        "first_name": "Petit",
-        "last_name": "Bozard",
-        "sex": "MALE",
-        "registration_date": "2020-02-02",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
-    },
-    {
-        "email": "medecindemedelin@f4.com",
-        "first_name": "Médecin",
-        "last_name": "De Medelin",
-        "sex": "MALE",
-        "registration_date": "2020-02-02",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
-    },
-    {
-        "email": "kameni@f4.com",
-        "first_name": "La Go",
-        "last_name": "Kameni",
-        "sex": "FEMALE",
-        "registration_date": "2020-06-07",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
-    },
-    {
-        "email": "daphne@f4.com",
-        "first_name": "La Go",
-        "last_name": "Daphné",
-        "sex": "FEMALE",
-        "registration_date": "2020-06-07",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
-    },
-    {
-        "email": "murielleb@f4.com",
-        "first_name": "Murielle",
-        "last_name": "Blanche",
-        "sex": "FEMALE",
-        "registration_date": "2021-02-07",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
-    },
-    {
-        "email": "poupi@f4.com",
-        "first_name": "Marcelle",
-        "last_name": "Poupi",
-        "sex": "FEMALE",
-        "registration_date": "2021-02-07",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
-    },
-    {
-        "email": "mitoumba@f4.com",
-        "first_name": "Mitoumba",
-        "last_name": "Manioc",
-        "sex": "MALE",
-        "registration_date": "2021-10-05",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
-    },
-    {
-        "email": "takam@f4.com",
-        "first_name": "Takam",
-        "last_name": "Le Mince",
-        "sex": "MALE",
-        "registration_date": "2021-10-05",
-        "address": choice(raw_addresses),
-        "phone": choice(phones),
-        "village": choice(villages),
-        "profession": choice(skills),
+        "reception_round": tr_5,
+        "meetings": [
+            {
+                "meeting_date": m_12_2021,
+                "members": [
+                    takam,
+                    mbatremy,
+                ],
+            },
+            {
+                "meeting_date": m_02_2022,
+                "members": [
+                    poupi,
+                    mitoumba,
+                ],
+            },
+            {
+                "meeting_date": m_04_2022,
+                "members": [
+                    daphne,
+                    murielle_blanche,
+                ],
+            },
+            {
+                "meeting_date": m_06_2022,
+                "members": [
+                    medecein_de_medelin,
+                    kameni,
+                ],
+            },
+            {
+                "meeting_date": m_08_2022,
+                "members": [
+                    malhox,
+                    petit_pays,
+                ],
+            },
+            {
+                "meeting_date": m_10_2022,
+                "members": [
+                    lady_ponce,
+                    manu_dibango,
+                ],
+            },
+            {
+                "meeting_date": m_12_2022,
+                "members": [
+                    avero,
+                    nyangono,
+                ],
+            },
+            {
+                "meeting_date": m_02_2023,
+                "members": [
+                    petit_pays,
+                    tom_cruise,
+                ],
+            },
+            {
+                "meeting_date": m_04_2023,
+                "members": [
+                    angelina_jolie,
+                    longue,
+                ],
+            },
+            {
+                "meeting_date": m_06_2023,
+                "members": [
+                    john_smith,
+                    julia_roberts,
+                ],
+            },
+        ],
     },
 ]
 
-# User
-
-# ReceptionRound
-
-# Hosts
-
 # TontineRound
+tt_1 = {
+    "start": m_04_2018,
+    "end": m_10_2018,
+    "buckets": 8,
+    "amount_pb": 200,
+    "jackpot": 800,
+}
+tt_2 = {
+    "start": m_02_2020,
+    "end": m_12_2020,
+    "buckets": 12,
+    "amount_pb": 150,
+    "jackpot": 900,
+}
+tt_3 = {
+    "start": m_10_2021,
+    "end": m_04_2023,
+    "buckets": 20,
+    "amount_pb": 100,
+    "jackpot": 1000,
+}
+
+tontine_rounds = [
+    tt_1,
+    tt_2,
+    tt_3,
+]
 
 # TontineRecipient
-
-# Board
+tontine_recipients = [
+    # Tontine Round 1
+    {
+        "tontine_round": tt_1,
+        "meetings": [
+            {
+                "meeting": m_04_2018,
+                "recipients": [
+                    john_smith,
+                    julia_roberts,
+                ],
+            },
+            {
+                "meeting": m_06_2018,
+                "recipients": [
+                    longue,
+                    tom_cruise,
+                ],
+            },
+            {
+                "meeting": m_08_2018,
+                "recipients": [
+                    avero,
+                    nyangono,
+                ],
+            },
+            {
+                "meeting": m_10_2018,
+                "recipients": [
+                    lady_ponce,
+                    manu_dibango,
+                ],
+            },
+        ],
+    },
+    # Tontine Round 2
+    {
+        "tontine_round": tt_2,
+        "meetings": [
+            {
+                "meeting": m_02_2020,
+                "recipients": [
+                    avero,
+                    longue,
+                ],
+            },
+            {
+                "meeting": m_04_2020,
+                "recipients": [
+                    julia_roberts,
+                    lady_ponce,
+                ],
+            },
+            {
+                "meeting": m_06_2020,
+                "recipients": [
+                    petit_pays,
+                    manu_dibango,
+                ],
+            },
+            {
+                "meeting": m_08_2020,
+                "recipients": [
+                    angelina_jolie,
+                    tom_cruise,
+                ],
+            },
+            {
+                "meeting": m_10_2020,
+                "recipients": [
+                    nyangono,
+                    john_smith,
+                ],
+            },
+            {
+                "meeting": m_12_2020,
+                "recipients": [
+                    malhox,
+                    petit_bozard,
+                ],
+            },
+        ],
+    },
+    # Tontine Round 3
+    {
+        "tontine_round": tt_3,
+        "meetings": [
+            {
+                "meeting": m_10_2021,
+                "recipients": [
+                    longue,
+                    john_smith,
+                ],
+            },
+            {
+                "meeting": m_12_2021,
+                "recipients": [
+                    julia_roberts,
+                    angelina_jolie,
+                ],
+            },
+            {
+                "meeting": m_02_2022,
+                "recipients": [
+                    petit_pays,
+                    tom_cruise,
+                ],
+            },
+            {
+                "meeting": m_04_2022,
+                "recipients": [
+                    avero,
+                    nyangono,
+                ],
+            },
+            {
+                "meeting": m_06_2022,
+                "recipients": [
+                    lady_ponce,
+                    manu_dibango,
+                ],
+            },
+            {
+                "meeting": m_08_2022,
+                "recipients": [
+                    malhox,
+                    petit_bozard,
+                ],
+            },
+            {
+                "meeting": m_10_2022,
+                "recipients": [
+                    medecein_de_medelin,
+                    kameni,
+                ],
+            },
+            {
+                "meeting": m_12_2022,
+                "recipients": [
+                    daphne,
+                    murielle_blanche,
+                ],
+            },
+            {
+                "meeting": m_02_2023,
+                "recipients": [
+                    poupi,
+                    mitoumba,
+                ],
+            },
+            {
+                "meeting": m_04_2023,
+                "recipients": [
+                    takam,
+                    mbatremy,
+                ],
+            },
+        ],
+    },
+]
 
 # BoardPosition
 
-# BoardMember
+board_positions = [
+    "Président",
+    "Vice-Pésident",
+    "Secrétaire",
+    "Censeur",
+    "Censeur Adjoint",
+    "Commissaire aux Comptes",
+    "Trésorier",
+    "Chargé de Projets",
+    "Chargé de Communication",
+]
 
-# Hosts
+# Board / BoardMember
+board_1 = {"start": m_02_2018, "end": m_02_2020}
+board_2 = {"start": m_04_2020, "end": m_04_2023}
 
-# TontineRound
-
-# TontineRecipient
-
-# Board
-
-# BoardPosition
-
-# BoardMember
+boards = [
+    {
+        "board": board_1,
+        "positions": [
+            {"Président": julia_roberts},
+            {"Vice-Pésident": petit_pays},
+            {"Secrétaire": longue},
+            {"Censeur": manu_dibango},
+            {"Commissaire aux Comptes": john_smith},
+            {"Trésorier": angelina_jolie},
+        ],
+    },
+    {
+        "board": board_2,
+        "positions": [
+            {"Président": petit_pays},
+            {"Vice-Pésident": tom_cruise},
+            {"Secrétaire": angelina_jolie},
+            {"Censeur": avero},
+            {"Commissaire aux Comptes": lady_ponce},
+            {"Trésorier": julia_roberts},
+            {"Chargé de Projets": john_smith},
+        ],
+    },
+]
 
 # AccountType
+secours, epargne = "Secours", "Épargne"
+epargne_scolaire, sanction = "Épargne Scolaire", "Sanction"
+inscription, fond_roulement = "Inscription", "Fond de Roulement"
 
-# Transaction
+account_types = [
+    secours,
+    epargne,
+    epargne_scolaire,
+    sanction,
+    inscription,
+    fond_roulement,
+]
 
 # MemberTransaction
+member_transactions = [{"meeting": m_02_2018, "transactions": []}]
 
 # OrgTransaction
 
