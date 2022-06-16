@@ -6,9 +6,10 @@ from . import models as m
 
 # admin.site.register(m.Skill)
 
+
 @admin.register(m.User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ['email', 'created_at', 'updated_at']
+    list_display = ["email", "created_at", "updated_at"]
 
 
 @admin.register(m.Skill)
@@ -81,24 +82,29 @@ class AccountTypeAdmin(admin.ModelAdmin):
 
 @admin.register(m.MemberTransaction)
 class MemberTransactionAdmin(admin.ModelAdmin):
-    list_display = ['transaction']
+    list_display = ["transaction"]
 
 
 @admin.register(m.OrgTransaction)
 class OrgTransactionAdmin(admin.ModelAdmin):
-    list_display = ['transaction']
+    list_display = ["transaction"]
 
 
 @admin.register(m.DocumentType)
 class DocumentTypeAdmin(admin.ModelAdmin):
-    list_display = ['title', 'created_at', 'updated_at']
+    list_display = ["title", "created_at", "updated_at"]
 
 
-@admin.register(m.DocumentChapter)
-class DocumentChapterAdmin(admin.ModelAdmin):
-    list_display = ['doc_type', 'chapter_number', 'title', 'created_at', 'updated_at']
+@admin.register(m.DocumentHistory)
+class DocumentHistoryAdmin(admin.ModelAdmin):
+    list_display = ['document_type', 'content', 'comment']
 
 
-@admin.register(m.DocumentArticle)
-class DocumentArticleAdmin(admin.ModelAdmin):
-    list_display = ['article_number', 'content', 'chapter']
+# @admin.register(m.DocumentChapter)
+# class DocumentChapterAdmin(admin.ModelAdmin):
+#     list_display = ["doc_type", "chapter_number", "title", "created_at", "updated_at"]
+#
+#
+# @admin.register(m.DocumentArticle)
+# class DocumentArticleAdmin(admin.ModelAdmin):
+#     list_display = ["article_number", "content", "chapter"]

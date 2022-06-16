@@ -1,4 +1,4 @@
-from random import randint, random, choice
+from random import random, choice
 
 # Address
 
@@ -907,24 +907,24 @@ boards = [
     {
         "board": board_1,
         "positions": [
-            {"Président": julia_roberts},
-            {"Vice-Pésident": petit_pays},
-            {"Secrétaire": longue},
-            {"Censeur": manu_dibango},
-            {"Commissaire aux Comptes": john_smith},
-            {"Trésorier": angelina_jolie},
+            {"position": "Président", "member": julia_roberts},
+            {"position": "Vice-Pésident", "member": petit_pays},
+            {"position": "Secrétaire", "member": longue},
+            {"position": "Censeur", "member": manu_dibango},
+            {"position": "Commissaire aux Comptes", "member": john_smith},
+            {"position": "Trésorier", "member": angelina_jolie},
         ],
     },
     {
         "board": board_2,
         "positions": [
-            {"Président": petit_pays},
-            {"Vice-Pésident": tom_cruise},
-            {"Secrétaire": angelina_jolie},
-            {"Censeur": avero},
-            {"Commissaire aux Comptes": lady_ponce},
-            {"Trésorier": julia_roberts},
-            {"Chargé de Projets": john_smith},
+            {"position": "Président", "member": petit_pays},
+            {"position": "Vice-Pésident", "member": tom_cruise},
+            {"position": "Secrétaire", "member": angelina_jolie},
+            {"position": "Censeur", "member": avero},
+            {"position": "Commissaire aux Comptes", "member": lady_ponce},
+            {"position": "Trésorier", "member": julia_roberts},
+            {"position": "Chargé de Projets", "member": john_smith},
         ],
     },
 ]
@@ -933,6 +933,7 @@ boards = [
 secours, epargne = "Secours", "Épargne"
 epargne_scolaire, sanction = "Épargne Scolaire", "Sanction"
 inscription, fond_roulement = "Inscription", "Fond de Roulement"
+project = "Projet"
 
 account_types = [
     secours,
@@ -941,15 +942,708 @@ account_types = [
     sanction,
     inscription,
     fond_roulement,
+    project,
 ]
 
 # MemberTransaction
-member_transactions = [{"meeting": m_02_2018, "transactions": []}]
+member_transactions = [
+    # 2018
+    {
+        "meeting": m_02_2018,
+        "transactions": [
+            {
+                "account": secours,
+                "members": [
+                    {"name": john_smith, "amount": 50},
+                    {"name": julia_roberts, "amount": 50},
+                    {"name": angelina_jolie, "amount": 50},
+                    {"name": longue, "amount": 50},
+                    {"name": petit_pays, "amount": 50},
+                    {"name": tom_cruise, "amount": 50},
+                    {"name": avero, "amount": 50},
+                    {"name": nyangono, "amount": 50},
+                    {"name": lady_ponce, "amount": 50},
+                    {"name": manu_dibango, "amount": 50},
+                ],
+            }
+        ],
+    },
+    {
+        "meeting": m_04_2018,
+        "transactions": [
+            {
+                "account": epargne,
+                "members": [
+                    {"name": petit_pays, "amount": 10},
+                    {"name": julia_roberts, "amount": 5},
+                ],
+            }
+        ],
+    },
+    {
+        "meeting": m_06_2018,
+        "transactions": [
+            {
+                "account": epargne_scolaire,
+                "members": [
+                    {"name": lady_ponce, "amount": 15},
+                    {"name": angelina_jolie, "amount": 5},
+                ],
+            }
+        ],
+    },
+    {
+        "meeting": m_08_2018,
+        "transactions": [
+            {
+                "account": epargne,
+                "members": [
+                    {"name": john_smith, "amount": 5},
+                    {"name": petit_pays, "amount": 15},
+                ],
+            }
+        ],
+    },
+    {
+        "meeting": m_10_2018,
+        "transactions": [
+            {
+                "account": epargne,
+                "members": [
+                    {"name": longue, "amount": 10},
+                ],
+            },
+            {
+                "account": epargne_scolaire,
+                "members": [
+                    {"name": manu_dibango, "amount": 10},
+                    {"name": lady_ponce, "amount": 15},
+                ],
+            },
+        ],
+    },
+    {
+        "meeting": m_12_2018,
+        "transactions": [
+            {
+                "account": epargne_scolaire,
+                "members": [
+                    {"name": julia_roberts, "amount": 25},
+                    {"name": avero, "amount": 10},
+                ],
+            }
+        ],
+    },
+    # 2019
+    {
+        "meeting": m_02_2019,
+        "transactions": [
+            {
+                "account": epargne,
+                "members": [
+                    {"name": angelina_jolie, "amount": 30},
+                    {"name": avero, "amount": 20},
+                ],
+            },
+            {
+                "account": epargne_scolaire,
+                "members": [
+                    {"name": angelina_jolie, "amount": 5},
+                    {"name": petit_pays, "amount": 10},
+                    {"name": longue, "amount": 10},
+                ],
+            },
+            {
+                "account": secours,
+                "members": [
+                    {"name": malhox, "amount": 25},
+                ],
+            },
+        ],
+    },
+    {
+        "meeting": m_04_2019,
+        "transactions": [
+            {
+                "account": secours,
+                "members": [
+                    {"name": malhox, "amount": 25},
+                ],
+            },
+            {
+                "account": sanction,
+                "members": [
+                    {"name": john_smith, "amount": 1},
+                    {"name": longue, "amount": 2},
+                    {"name": lady_ponce, "amount": 2},
+                ],
+            },
+        ],
+    },
+    {
+        "meeting": m_06_2019,
+        "transactions": [
+            {
+                "account": epargne,
+                "members": [
+                    {"name": malhox, "amount": 10},
+                ],
+            },
+            {
+                "account": epargne_scolaire,
+                "members": [
+                    {"name": malhox, "amount": 10},
+                    {"name": avero, "amount": 10},
+                    {"name": nyangono, "amount": 10},
+                ],
+            },
+        ],
+    },
+    {
+        "meeting": m_08_2019,
+        "transactions": [
+            {
+                "account": sanction,
+                "members": [
+                    {"name": malhox, "amount": 1},
+                    {"name": petit_pays, "amount": 2},
+                    {"name": tom_cruise, "amount": 2},
+                ],
+            }
+        ],
+    },
+    {
+        "meeting": m_10_2019,
+        "transactions": [],
+    },
+    {
+        "meeting": m_12_2019,
+        "transactions": [],
+    },
+    # 2020
+    {
+        "meeting": m_02_2020,
+        "transactions": [
+            {
+                "account": secours,
+                "members": [
+                    {"name": petit_bozard, "amount": 30},
+                    {"name": medecein_de_medelin, "amount": 40},
+                ],
+            },
+            {
+                "account": epargne_scolaire,
+                "members": [
+                    {"name": malhox, "amount": 20},
+                    {"name": manu_dibango, "amount": 10},
+                ],
+            },
+        ],
+    },
+    {
+        "meeting": m_04_2020,
+        "transactions": [
+            {
+                "account": sanction,
+                "members": [
+                    {"name": angelina_jolie, "amount": 5},
+                    {"name": nyangono, "amount": 2},
+                ],
+            }
+        ],
+    },
+    {
+        "meeting": m_06_2020,
+        "transactions": [
+            {
+                "account": secours,
+                "members": [
+                    {"name": petit_bozard, "amount": 20},
+                    {"name": medecein_de_medelin, "amount": 10},
+                    {"name": kameni, "amount": 50},
+                    {"name": daphne, "amount": 50},
+                ],
+            },
+        ],
+    },
+    {
+        "meeting": m_08_2020,
+        "transactions": [
+            {
+                "account": epargne,
+                "members": [
+                    {"name": john_smith, "amount": 10},
+                    {"name": angelina_jolie, "amount": 5},
+                ],
+            }
+        ],
+    },
+    {
+        "meeting": m_10_2020,
+        "transactions": [],
+    },
+    {
+        "meeting": m_12_2020,
+        "transactions": [],
+    },
+    # 2021
+    {
+        "meeting": m_02_2021,
+        "transactions": [
+            {
+                "account": secours,
+                "members": [
+                    {"name": murielle_blanche, "amount": 50},
+                    {"name": poupi, "amount": 50},
+                ],
+            },
+            {
+                "account": project,
+                "members": [
+                    {"name": john_smith, "amount": 5},
+                    {"name": julia_roberts, "amount": 5},
+                    {"name": angelina_jolie, "amount": 5},
+                    {"name": longue, "amount": 5},
+                    {"name": petit_pays, "amount": 5},
+                    {"name": tom_cruise, "amount": 5},
+                    {"name": avero, "amount": 5},
+                    {"name": nyangono, "amount": 5},
+                    {"name": lady_ponce, "amount": 5},
+                    {"name": manu_dibango, "amount": 5},
+                    {"name": malhox, "amount": 5},
+                    {"name": petit_bozard, "amount": 5},
+                    {"name": medecein_de_medelin, "amount": 5},
+                    {"name": kameni, "amount": 5},
+                    {"name": daphne, "amount": 5},
+                ],
+            },
+        ],
+    },
+    {
+        "meeting": m_04_2021,
+        "transactions": [
+            {
+                "account": project,
+                "members": [
+                    {"name": john_smith, "amount": 5},
+                    {"name": julia_roberts, "amount": 5},
+                    {"name": angelina_jolie, "amount": 5},
+                    {"name": longue, "amount": 5},
+                    {"name": petit_pays, "amount": 5},
+                    {"name": tom_cruise, "amount": 5},
+                    {"name": avero, "amount": 5},
+                    {"name": nyangono, "amount": 5},
+                    {"name": lady_ponce, "amount": 5},
+                    {"name": manu_dibango, "amount": 5},
+                    {"name": malhox, "amount": 5},
+                    {"name": petit_bozard, "amount": 5},
+                    {"name": medecein_de_medelin, "amount": 5},
+                    {"name": kameni, "amount": 5},
+                    {"name": daphne, "amount": 5},
+                    {"name": murielle_blanche, "amount": 5},
+                    {"name": poupi, "amount": 5},
+                ],
+            },
+        ],
+    },
+    {
+        "meeting": m_06_2021,
+        "transactions": [
+            {
+                "account": project,
+                "members": [
+                    {"name": john_smith, "amount": 5},
+                    {"name": julia_roberts, "amount": 5},
+                    {"name": angelina_jolie, "amount": 5},
+                    {"name": longue, "amount": 5},
+                    {"name": petit_pays, "amount": 5},
+                    {"name": tom_cruise, "amount": 5},
+                    {"name": avero, "amount": 5},
+                    {"name": nyangono, "amount": 5},
+                    {"name": lady_ponce, "amount": 5},
+                    {"name": manu_dibango, "amount": 5},
+                    {"name": malhox, "amount": 5},
+                    {"name": petit_bozard, "amount": 5},
+                    {"name": medecein_de_medelin, "amount": 5},
+                    {"name": kameni, "amount": 5},
+                    {"name": daphne, "amount": 5},
+                    {"name": murielle_blanche, "amount": 5},
+                    {"name": poupi, "amount": 5},
+                ],
+            },
+        ],
+    },
+    {
+        "meeting": m_08_2021,
+        "transactions": [
+            {
+                "account": project,
+                "members": [
+                    {"name": john_smith, "amount": 5},
+                    {"name": julia_roberts, "amount": 5},
+                    {"name": angelina_jolie, "amount": 5},
+                    {"name": longue, "amount": 5},
+                    {"name": petit_pays, "amount": 5},
+                    {"name": tom_cruise, "amount": 5},
+                    {"name": avero, "amount": 5},
+                    {"name": nyangono, "amount": 5},
+                    {"name": lady_ponce, "amount": 5},
+                    {"name": manu_dibango, "amount": 5},
+                    {"name": malhox, "amount": 5},
+                    {"name": petit_bozard, "amount": 5},
+                    {"name": medecein_de_medelin, "amount": 5},
+                    {"name": kameni, "amount": 5},
+                    {"name": daphne, "amount": 5},
+                    {"name": murielle_blanche, "amount": 5},
+                    {"name": poupi, "amount": 5},
+                ],
+            },
+        ],
+    },
+    {
+        "meeting": m_10_2021,
+        "transactions": [
+            {
+                "account": secours,
+                "members": [
+                    {"name": mitoumba, "amount": 50},
+                    {"name": takam, "amount": 50},
+                    {"name": mbatremy, "amount": 50},
+                ],
+            },
+            {
+                "account": project,
+                "members": [
+                    {"name": john_smith, "amount": 5},
+                    {"name": julia_roberts, "amount": 5},
+                    {"name": angelina_jolie, "amount": 5},
+                    {"name": longue, "amount": 5},
+                    {"name": petit_pays, "amount": 5},
+                    {"name": tom_cruise, "amount": 5},
+                    {"name": avero, "amount": 5},
+                    {"name": nyangono, "amount": 5},
+                    {"name": lady_ponce, "amount": 5},
+                    {"name": manu_dibango, "amount": 5},
+                    {"name": malhox, "amount": 5},
+                    {"name": petit_bozard, "amount": 5},
+                    {"name": medecein_de_medelin, "amount": 5},
+                    {"name": kameni, "amount": 5},
+                    {"name": daphne, "amount": 5},
+                    {"name": murielle_blanche, "amount": 5},
+                    {"name": poupi, "amount": 5},
+                ],
+            },
+        ],
+    },
+    {
+        "meeting": m_12_2021,
+        "transactions": [
+            {
+                "account": project,
+                "members": [
+                    {"name": john_smith, "amount": 5},
+                    {"name": julia_roberts, "amount": 5},
+                    {"name": angelina_jolie, "amount": 5},
+                    {"name": longue, "amount": 5},
+                    {"name": petit_pays, "amount": 5},
+                    {"name": tom_cruise, "amount": 5},
+                    {"name": avero, "amount": 5},
+                    {"name": nyangono, "amount": 5},
+                    {"name": lady_ponce, "amount": 5},
+                    {"name": manu_dibango, "amount": 5},
+                    {"name": malhox, "amount": 5},
+                    {"name": petit_bozard, "amount": 5},
+                    {"name": medecein_de_medelin, "amount": 5},
+                    {"name": kameni, "amount": 5},
+                    {"name": daphne, "amount": 5},
+                    {"name": murielle_blanche, "amount": 5},
+                    {"name": poupi, "amount": 5},
+                    {"name": mitoumba, "amount": 5},
+                    {"name": takam, "amount": 5},
+                    {"name": mbatremy, "amount": 5},
+                ],
+            },
+        ],
+    },
+    # 2022
+    {
+        "meeting": m_02_2022,
+        "transactions": [
+            {
+                "account": project,
+                "members": [
+                    {"name": john_smith, "amount": 5},
+                    {"name": julia_roberts, "amount": 5},
+                    {"name": angelina_jolie, "amount": 5},
+                    {"name": longue, "amount": 5},
+                    {"name": petit_pays, "amount": 5},
+                    {"name": tom_cruise, "amount": 5},
+                    {"name": avero, "amount": 5},
+                    {"name": nyangono, "amount": 5},
+                    {"name": lady_ponce, "amount": 5},
+                    {"name": manu_dibango, "amount": 5},
+                    {"name": malhox, "amount": 5},
+                    {"name": petit_bozard, "amount": 5},
+                    {"name": medecein_de_medelin, "amount": 5},
+                    {"name": kameni, "amount": 5},
+                    {"name": daphne, "amount": 5},
+                    {"name": murielle_blanche, "amount": 5},
+                    {"name": poupi, "amount": 5},
+                    {"name": mitoumba, "amount": 5},
+                    {"name": takam, "amount": 5},
+                    {"name": mbatremy, "amount": 5},
+                ],
+            },
+        ],
+    },
+    {
+        "meeting": m_04_2022,
+        "transactions": [
+            {
+                "account": project,
+                "members": [
+                    {"name": john_smith, "amount": 5},
+                    {"name": julia_roberts, "amount": 5},
+                    {"name": angelina_jolie, "amount": 5},
+                    {"name": longue, "amount": 5},
+                    {"name": petit_pays, "amount": 5},
+                    {"name": tom_cruise, "amount": 5},
+                    {"name": avero, "amount": 5},
+                    {"name": nyangono, "amount": 5},
+                    {"name": lady_ponce, "amount": 5},
+                    {"name": manu_dibango, "amount": 5},
+                    {"name": malhox, "amount": 5},
+                    {"name": petit_bozard, "amount": 5},
+                    {"name": medecein_de_medelin, "amount": 5},
+                    {"name": kameni, "amount": 5},
+                    {"name": daphne, "amount": 5},
+                    {"name": murielle_blanche, "amount": 5},
+                    {"name": poupi, "amount": 5},
+                    {"name": mitoumba, "amount": 5},
+                    {"name": takam, "amount": 5},
+                    {"name": mbatremy, "amount": 5},
+                ],
+            },
+        ],
+    },
+    {
+        "meeting": m_06_2022,
+        "transactions": [
+            {
+                "account": project,
+                "members": [
+                    {"name": john_smith, "amount": 5},
+                    {"name": julia_roberts, "amount": 5},
+                    {"name": angelina_jolie, "amount": 5},
+                    {"name": longue, "amount": 5},
+                    {"name": petit_pays, "amount": 5},
+                    {"name": tom_cruise, "amount": 5},
+                    {"name": avero, "amount": 5},
+                    {"name": nyangono, "amount": 5},
+                    {"name": lady_ponce, "amount": 5},
+                    {"name": manu_dibango, "amount": 5},
+                    {"name": malhox, "amount": 5},
+                    {"name": petit_bozard, "amount": 5},
+                    {"name": medecein_de_medelin, "amount": 5},
+                    {"name": kameni, "amount": 5},
+                    {"name": daphne, "amount": 5},
+                    {"name": murielle_blanche, "amount": 5},
+                    {"name": poupi, "amount": 5},
+                    {"name": mitoumba, "amount": 5},
+                    {"name": takam, "amount": 5},
+                    {"name": mbatremy, "amount": 5},
+                ],
+            },
+        ],
+    },
+]
 
 # OrgTransaction
+org_transactions = [
+    # 2018
+    {
+        "meeting": m_02_2018,
+        "balances": [
+            {"account": secours, "amount": 500},
+        ],
+    },
+    {
+        "meeting": m_04_2018,
+        "balances": [
+            {"account": epargne, "amount": 15},
+        ],
+    },
+    {
+        "meeting": m_06_2018,
+        "balances": [
+            {"account": epargne, "amount": 20},
+        ],
+    },
+    {
+        "meeting": m_08_2018,
+        "balances": [
+            {"account": epargne, "amount": 20},
+        ],
+    },
+    {
+        "meeting": m_10_2018,
+        "balances": [
+            {"account": epargne, "amount": 10},
+        ],
+    },
+    {
+        "meeting": m_12_2018,
+        "balances": [
+            {"account": epargne_scolaire, "amount": 35},
+        ],
+    },
+    # 2019
+    {
+        "meeting": m_02_2019,
+        "balances": [
+            {"account": epargne, "amount": 50},
+            {"account": epargne_scolaire, "amount": 25},
+            {"account": secours, "amount": 25},
+        ],
+    },
+    {
+        "meeting": m_04_2019,
+        "balances": [
+            {"account": secours, "amount": 25},
+            {"account": sanction, "amount": 5},
+        ],
+    },
+    {
+        "meeting": m_06_2019,
+        "balances": [
+            {"account": epargne, "amount": 10},
+            {"account": epargne_scolaire, "amount": 30},
+        ],
+    },
+    {
+        "meeting": m_08_2019,
+        "balances": [
+            {"account": sanction, "amount": 5},
+        ],
+    },
+    {
+        "meeting": m_10_2019,
+        "balances": [],
+    },
+    {
+        "meeting": m_12_2019,
+        "balances": [],
+    },
+    # 2020
+    {
+        "meeting": m_02_2020,
+        "balances": [
+            {"account": secours, "amount": 70},
+            {"account": epargne_scolaire, "amount": 30},
+        ],
+    },
+    {
+        "meeting": m_04_2020,
+        "balances": [
+            {"account": sanction, "amount": 7},
+        ],
+    },
+    {
+        "meeting": m_06_2020,
+        "balances": [
+            {"account": secours, "amount": 130},
+        ],
+    },
+    {
+        "meeting": m_08_2020,
+        "balances": [
+            {"account": epargne, "amount": 15},
+        ],
+    },
+    {
+        "meeting": m_10_2020,
+        "balances": [],
+    },
+    {
+        "meeting": m_12_2020,
+        "balances": [],
+    },
+    # 2021
+    {
+        "meeting": m_02_2021,
+        "balances": [
+            {"account": secours, "amount": 100},
+            {"account": project, "amount": 75},
+        ],
+    },
+    {
+        "meeting": m_04_2021,
+        "balances": [
+            {"account": project, "amount": 85},
+        ],
+    },
+    {
+        "meeting": m_06_2021,
+        "balances": [
+            {"account": project, "amount": 85},
+        ],
+    },
+    {
+        "meeting": m_08_2021,
+        "balances": [
+            {"account": project, "amount": 85},
+        ],
+    },
+    {
+        "meeting": m_10_2021,
+        "balances": [
+            {"account": secours, "amount": 150},
+            {"account": project, "amount": 85},
+        ],
+    },
+    {
+        "meeting": m_12_2021,
+        "balances": [
+            {"account": project, "amount": 100},
+        ],
+    },
+    # 2022
+    {
+        "meeting": m_02_2022,
+        "balances": [
+            {"account": project, "amount": 100},
+        ],
+    },
+    {
+        "meeting": m_04_2022,
+        "balances": [
+            {"account": project, "amount": 100},
+        ],
+    },
+    {
+        "meeting": m_06_2022,
+        "balances": [
+            {"account": project, "amount": 100},
+        ],
+    },
+]
+
 
 # DocumentType
+statutes = "Statuts"
+internal_rules = "Règlement Intérieur"
 
-# DocumentChapter
+document_types = [statutes, internal_rules]
+
+# DocumentChapter / DocumentArticle
+chapters = [
+    {
+        "document": "",
+        "chapters": [
+            {"title": "", "articles": []},
+            {"title": "", "articles": []},
+        ],
+    },
+]
 
 # DocumentArticle

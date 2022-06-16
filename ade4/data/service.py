@@ -62,7 +62,7 @@ def insert_members_and_users(member_list: List[Dict]) -> bool:
             # Registration Date
             try:
                 meeting = Meeting.objects.get(
-                    date=date.fromisoformat(m["registration_date"])
+                    date=date.fromisoformat(m["registration_date"]["date"])
                 )
             except Meeting.DoesNotExist:
                 meeting = None
@@ -95,8 +95,8 @@ def insert_reception_rounds(rounds: List[Dict]) -> bool:
     if table_empty:
         rr = []
         for r in rounds:
-            start_date = r.get("start", "")
-            end_date = r.get("end", "")
+            start_date = r["start"]["date"]
+            end_date = r["end"]["date"]
             start_meeting = (
                 Meeting.objects.filter(date=date.fromisoformat(start_date)).first()
                 if start_date
@@ -109,5 +109,213 @@ def insert_reception_rounds(rounds: List[Dict]) -> bool:
             )
             rr.append(ReceptionRound(start_date=start_meeting, end_date=end_meeting))
         _ = ReceptionRound.objects.bulk_create(rr)
+        return True
+    return False
+
+
+def insert_hosts(host_list: List[Dict]) -> bool:
+    table_empty = Hosts.objects.all().count() == 0
+    if table_empty:
+        hosts = []
+        for h in host_list:
+            rr = ReceptionRound.objects.get(
+                start_date=date.fromisoformat(h["reception_round"]["start"]["date"]),
+                end_date=date.fromisoformat(h["reception_round"]["end"]["date"]),
+            )
+            for meeting in h["meetings"]:
+                m = Meeting.objects.get(
+                    date=date.fromisoformat(meeting["meeting_date"]["date"])
+                )
+                for raw_member in meeting["members"]:
+                    member = Member.objects.get(
+                        first_name__iexact=raw_member["first_name"],
+                        last_name__iexact=raw_member["last_name"],
+                    )
+                    hosts.append(Hosts(reception_round=rr, meeting=m, member=member))
+        Hosts.objects.bulk_create(hosts)
+        return True
+    return False
+
+
+def insert_tontine_rounds(rounds: List[Dict]) -> bool:
+    table_empty = TontineRound.objects.all().count() == 0
+    if table_empty:
+        tr = []
+        for r in rounds:
+            start_date = r["start"]["date"]
+            end_date = r["end"]["date"]
+            start_meeting = (
+                Meeting.objects.filter(date=date.fromisoformat(start_date)).first()
+                if start_date
+                else None
+            )
+            end_meeting = (
+                Meeting.objects.filter(date=date.fromisoformat(end_date)).first()
+                if end_date
+                else None
+            )
+            tr.append(
+                TontineRound(
+                    start_date=start_meeting,
+                    end_date=end_meeting,
+                    pots=r["buckets"],
+                    amount_per_pot=r["amount_pb"],
+                )
+            )
+        _ = TontineRound.objects.bulk_create(tr)
+        return True
+    return False
+
+
+def insert_tontine_recipients(recipients_list: List[Dict]) -> bool:
+    table_empty = TontineRecipient.objects.all().count() == 0
+    if table_empty:
+        recipients = []
+        for r in recipients_list:
+            tr = TontineRound.objects.get(
+                start_date=Meeting.objects.get(
+                    date=date.fromisoformat(r["tontine_round"]["start"]["date"])
+                ),
+                end_date=Meeting.objects.get(
+                    date=date.fromisoformat(r["tontine_round"]["end"]["date"])
+                ),
+            )
+            for meeting in r["meetings"]:
+                m = Meeting.objects.get(
+                    date=date.fromisoformat(meeting["meeting"]["date"])
+                )
+                for raw_member in meeting["recipients"]:
+                    member = Member.objects.get(
+                        first_name__iexact=raw_member["first_name"],
+                        last_name__iexact=raw_member["last_name"],
+                    )
+                    recipients.append(
+                        TontineRecipient(
+                            tontine_round=tr,
+                            meeting=m,
+                            member=member,
+                            received_amount=r["tontine_round"]["jackpot"],
+                        )
+                    )
+        _ = TontineRecipient.objects.bulk_create(recipients)
+        # for rec in recipients:
+        #     print(rec)
+        #     rec.save()
+        return True
+    return False
+
+
+def insert_board_positions(position_list: List[Dict]) -> bool:
+    table_empty = BoardPosition.objects.all().count() == 0
+    if table_empty:
+        positions = []
+        for position in position_list:
+            positions.append(BoardPosition(title=position))
+        _ = BoardPosition.objects.bulk_create(positions)
+        return True
+    return False
+
+
+def insert_boards_and_board_members(board_list: List[Dict]) -> bool:
+    table_empty = Board.objects.all().count() == 0
+    if table_empty:
+        board_members = []
+        for b in board_list:
+            board = Board.objects.create(
+                start_date=Meeting.objects.get(
+                    date=date.fromisoformat(b["board"]["start"]["date"])
+                ),
+                end_date=Meeting.objects.get(
+                    date=date.fromisoformat(b["board"]["end"]["date"])
+                ),
+            )
+            for pos in b["positions"]:
+                pos_str = pos["position"]
+                first_name = pos["member"]["first_name"]
+                last_name = pos["member"]["last_name"]
+                position = BoardPosition.objects.get(title__iexact=pos_str)
+                member = Member.objects.get(
+                    first_name__iexact=first_name, last_name__iexact=last_name
+                )
+                board_members.append(
+                    BoardMember(board=board, position=position, member=member)
+                )
+
+        _ = BoardMember.objects.bulk_create(board_members)
+        return True
+    return False
+
+
+def insert_account_types(account_list: List[str]) -> bool:
+    table_empty = AccountType.objects.all().count() == 0
+    if table_empty:
+        accounts = []
+        for account in account_list:
+            accounts.append(AccountType(title=account))
+        _ = AccountType.objects.bulk_create(accounts)
+        return True
+    return False
+
+
+def insert_member_transactions(transaction_list: List[Dict]) -> bool:
+    table_empty = MemberTransaction.objects.all().count() == 0
+    if table_empty:
+        transactions = []
+        for mt in transaction_list:
+            meeting = Meeting.objects.get(
+                date=date.fromisoformat(mt["meeting"]["date"])
+            )
+            for transaction_type in mt["transactions"]:
+                account = AccountType.objects.get(
+                    title__iexact=transaction_type["account"]
+                )
+                for m in transaction_type["members"]:
+                    # print("\n", m["name"], '\n')
+                    member = Member.objects.get(
+                        first_name__iexact=m["name"]["first_name"],
+                        last_name__iexact=m["name"]["last_name"],
+                    )
+                    transactions.append(
+                        MemberTransaction(
+                            meeting=meeting,
+                            member=member,
+                            account=account,
+                            amount=m["amount"],
+                            title=f"{transaction_type['account']}-{m['name']['first_name']} {m['name']['last_name']}",
+                        )
+                    )
+        _ = MemberTransaction.objects.bulk_create(transactions)
+        return True
+    return False
+
+
+def insert_org_transactions(transaction_list: List[Dict]) -> bool:
+    table_empty = OrgTransaction.objects.all().count() == 0
+    if table_empty:
+        transactions = []
+        for m in transaction_list:
+            meeting = Meeting.objects.get(date=date.fromisoformat(m["meeting"]["date"]))
+            for balance in m["balances"]:
+                account = AccountType.objects.get(title__iexact=balance["account"])
+                transactions.append(
+                    OrgTransaction(
+                        meeting=meeting,
+                        account=account,
+                        amount=balance["amount"],
+                        title=f"{balance['account']}-{m['meeting']['date']}",
+                    )
+                )
+        _ = OrgTransaction.objects.bulk_create(transactions)
+        return True
+    return False
+
+
+def insert_document_types(document_type_list: List[str]) -> bool:
+    table_empty = DocumentType.objects.all().count() == 0
+    if table_empty:
+        docs = []
+        for doc_type in document_type_list:
+            docs.append(DocumentType(title=doc_type))
+        _ = DocumentType.objects.bulk_create(docs)
         return True
     return False

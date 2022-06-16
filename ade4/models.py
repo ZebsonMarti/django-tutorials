@@ -71,6 +71,9 @@ class Meeting(TimestampMixin):
     hosts = models.ManyToManyField(
         to="Member", related_name="hosted_meetings", through="Hosts"
     )
+    tontine_recipients = models.ManyToManyField(
+        to="Member", related_name="recipient_dates", through="TontineRecipient"
+    )
     type = models.CharField(
         verbose_name=_t("Type Séance"),
         max_length=15,
@@ -311,11 +314,13 @@ class TontineRound(TimestampMixin):
 
 class TontineRecipient(TimestampMixin):
     tontine_round = models.ForeignKey(
-        to=ReceptionRound, on_delete=models.SET_NULL, null=True
+        to=TontineRound,
+        on_delete=models.SET_NULL,
+        null=True,
     )
     meeting = models.ForeignKey(
         to=Meeting,
-        to_field="date",
+        # to_field="date",
         on_delete=models.CASCADE,
         null=False,
         related_name="recipient_dates",
@@ -331,7 +336,7 @@ class TontineRecipient(TimestampMixin):
         verbose_name = "Tontine Recipient"
         verbose_name_plural = "Tontine Recipients"
         ordering = ["-meeting__date", "member__first_name"]
-        unique_together = [("tontine_round", "meeting", "member")]
+        # unique_together = [("tontine_round", "meeting", "member")]
 
     def __str__(self):
         return f"({self.tontine_round}, {self.meeting}, {self.member})"
@@ -340,7 +345,7 @@ class TontineRecipient(TimestampMixin):
 class Board(TimestampMixin):
     start_date = models.ForeignKey(
         to=Meeting,
-        to_field="date",
+        # to_field="date",
         null=False,
         blank=False,
         on_delete=models.CASCADE,
@@ -348,7 +353,7 @@ class Board(TimestampMixin):
     )
     end_date = models.ForeignKey(
         to=Meeting,
-        to_field="date",
+        # to_field="date",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -477,45 +482,63 @@ class DocumentType(TimestampMixin):
         return self.title.upper()
 
 
-class DocumentChapter(TimestampMixin):
-    title = models.CharField(verbose_name="Intitulé", max_length=255)
-    chapter_number = models.PositiveSmallIntegerField(
-        verbose_name="N°", null=False, blank=True
-    )
-    doc_type = models.ForeignKey(
+class DocumentHistory(TimestampMixin):
+    document_type = models.ForeignKey(
         to=DocumentType,
         on_delete=models.CASCADE,
         null=False,
         blank=False,
-        related_name="chapters",
+        related_name="document",
     )
+    content = models.TextField()
+    comment = models.TextField()
 
     class Meta:
-        verbose_name = "Document Chapter"
-        verbose_name_plural = "Document Chapters"
-        ordering = ["doc_type", "title"]
-
-    def __str__(self):
-        return f"{self.doc_type}: {self.chapter_number} - {self.title.upper()}"
+        verbose_name = 'Document'
+        verbose_name_plural = 'Documents'
+        ordering = ['-updated_at']
 
 
-class DocumentArticle(TimestampMixin):
-    content = models.CharField(verbose_name="Intitulé", max_length=255)
-    article_number = models.PositiveSmallIntegerField(
-        verbose_name="N°", null=False, blank=True
-    )
-    chapter = models.ForeignKey(
-        to=DocumentChapter,
-        on_delete=models.CASCADE,
-        null=False,
-        blank=False,
-        related_name="articles",
-    )
 
-    class Meta:
-        verbose_name = "Document Article"
-        verbose_name_plural = "Document Articles"
-        ordering = ["chapter__doc_type", "chapter", "article_number"]
-
-    def __str__(self):
-        return f"{self.chapter.doc_type}-{self.chapter}: {self.article_number} - {self.content.title()}"
+# class DocumentChapter(TimestampMixin):
+#     title = models.CharField(verbose_name="Intitulé", max_length=255)
+#     chapter_number = models.PositiveSmallIntegerField(
+#         verbose_name="N°", null=False, blank=True
+#     )
+#     doc_type = models.ForeignKey(
+#         to=DocumentType,
+#         on_delete=models.CASCADE,
+#         null=False,
+#         blank=False,
+#         related_name="chapters",
+#     )
+#
+#     class Meta:
+#         verbose_name = "Document Chapter"
+#         verbose_name_plural = "Document Chapters"
+#         ordering = ["doc_type", "title"]
+#
+#     def __str__(self):
+#         return f"{self.doc_type}: {self.chapter_number} - {self.title.upper()}"
+#
+#
+# class DocumentArticle(TimestampMixin):
+#     content = models.CharField(verbose_name="Intitulé", max_length=255)
+#     article_number = models.PositiveSmallIntegerField(
+#         verbose_name="N°", null=False, blank=True
+#     )
+#     chapter = models.ForeignKey(
+#         to=DocumentChapter,
+#         on_delete=models.CASCADE,
+#         null=False,
+#         blank=False,
+#         related_name="articles",
+#     )
+#
+#     class Meta:
+#         verbose_name = "Document Article"
+#         verbose_name_plural = "Document Articles"
+#         ordering = ["chapter__doc_type", "chapter", "article_number"]
+#
+#     def __str__(self):
+#         return f"{self.chapter.doc_type}-{self.chapter}: {self.article_number} - {self.content.title()}"

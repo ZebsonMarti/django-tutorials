@@ -9,338 +9,809 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='AccountType',
+            name="AccountType",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('title', models.CharField(max_length=30, unique=True, verbose_name='Name')),
-                ('code', models.CharField(max_length=5, verbose_name='Code')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "title",
+                    models.CharField(max_length=30, unique=True, verbose_name="Name"),
+                ),
+                ("code", models.CharField(max_length=5, verbose_name="Code")),
             ],
             options={
-                'ordering': ['title'],
+                "ordering": ["title"],
             },
         ),
         migrations.CreateModel(
-            name='Address',
+            name="Address",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('raw_address', models.CharField(max_length=100, unique=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("raw_address", models.CharField(max_length=100, unique=True)),
             ],
             options={
-                'verbose_name': 'Address',
-                'verbose_name_plural': 'Addresses',
+                "verbose_name": "Address",
+                "verbose_name_plural": "Addresses",
             },
         ),
         migrations.CreateModel(
-            name='Board',
+            name="Board",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
             ],
             options={
-                'verbose_name': 'Board',
-                'verbose_name_plural': 'Boards',
-                'ordering': ['-start_date__date'],
+                "verbose_name": "Board",
+                "verbose_name_plural": "Boards",
+                "ordering": ["-start_date__date"],
             },
         ),
         migrations.CreateModel(
-            name='BoardPosition',
+            name="BoardPosition",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('title', models.CharField(max_length=100, unique=True, verbose_name='Poste')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "title",
+                    models.CharField(max_length=100, unique=True, verbose_name="Poste"),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='Constants',
+            name="Constants",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('title', models.CharField(max_length=100)),
-                ('amount', models.DecimalField(decimal_places=2, max_digits=10)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("title", models.CharField(max_length=100)),
+                ("amount", models.DecimalField(decimal_places=2, max_digits=10)),
             ],
             options={
-                'verbose_name': 'Constants',
-                'verbose_name_plural': 'Constants',
+                "verbose_name": "Constants",
+                "verbose_name_plural": "Constants",
             },
         ),
         migrations.CreateModel(
-            name='DocumentType',
+            name="DocumentType",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('title', models.CharField(max_length=255, unique=True, verbose_name='Intitulé')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "title",
+                    models.CharField(
+                        max_length=255, unique=True, verbose_name="Intitulé"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Document Type',
-                'verbose_name_plural': 'Document Types',
+                "verbose_name": "Document Type",
+                "verbose_name_plural": "Document Types",
             },
         ),
         migrations.CreateModel(
-            name='Hosts',
+            name="Hosts",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
             ],
             options={
-                'verbose_name': 'Hosts',
-                'verbose_name_plural': 'Hosts',
-                'ordering': ['-meeting__date', 'member__first_name'],
+                "verbose_name": "Hosts",
+                "verbose_name_plural": "Hosts",
+                "ordering": ["-meeting__date", "member__first_name"],
             },
         ),
         migrations.CreateModel(
-            name='Meeting',
+            name="Meeting",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('date', models.DateField(unique=True, verbose_name='Date')),
-                ('type', models.CharField(choices=[('REGULAR', 'Séance Ordinaire'), ('EXTRAORDINARY', 'Séance Extraordinaire')], default='REGULAR', max_length=15, verbose_name='Type Séance')),
-                ('agenda', models.CharField(blank=True, max_length=255, null=True, verbose_name='Ordre du jour')),
-                ('report', models.TextField(blank=True, null=True, verbose_name='Rapport')),
-                ('finance_ok', models.BooleanField(default=False, verbose_name='Finances OK?')),
-                ('sanction_ok', models.BooleanField(default=False, verbose_name='Sanctions OK?')),
-                ('validated', models.BooleanField(default=False, verbose_name='Séance Validée')),
-                ('address', models.ForeignKey(default='', on_delete=django.db.models.deletion.SET_DEFAULT, to='ade4.address')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("date", models.DateField(unique=True, verbose_name="Date")),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[
+                            ("REGULAR", "Séance Ordinaire"),
+                            ("EXTRAORDINARY", "Séance Extraordinaire"),
+                        ],
+                        default="REGULAR",
+                        max_length=15,
+                        verbose_name="Type Séance",
+                    ),
+                ),
+                (
+                    "agenda",
+                    models.CharField(
+                        blank=True,
+                        max_length=255,
+                        null=True,
+                        verbose_name="Ordre du jour",
+                    ),
+                ),
+                (
+                    "report",
+                    models.TextField(blank=True, null=True, verbose_name="Rapport"),
+                ),
+                (
+                    "finance_ok",
+                    models.BooleanField(default=False, verbose_name="Finances OK?"),
+                ),
+                (
+                    "sanction_ok",
+                    models.BooleanField(default=False, verbose_name="Sanctions OK?"),
+                ),
+                (
+                    "validated",
+                    models.BooleanField(default=False, verbose_name="Séance Validée"),
+                ),
+                (
+                    "address",
+                    models.ForeignKey(
+                        default="",
+                        on_delete=django.db.models.deletion.SET_DEFAULT,
+                        to="ade4.address",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Meeting',
-                'ordering': ['-date'],
+                "verbose_name": "Meeting",
+                "ordering": ["-date"],
             },
         ),
         migrations.CreateModel(
-            name='Member',
+            name="Member",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('first_name', models.CharField(max_length=255, verbose_name='Prénom')),
-                ('last_name', models.CharField(max_length=255, verbose_name='Nom')),
-                ('sex', models.CharField(choices=[('MALE', 'Homme'), ('FEMALE', 'Femme'), ('OTHER', 'Autre')], max_length=6, verbose_name='Sexe')),
-                ('phone', models.CharField(blank=True, max_length=30, null=True, verbose_name='N° Téléphone')),
-                ('status', models.CharField(choices=[('ACTIVE', 'Actif'), ('INACTIVE', 'Inactif'), ('PENDING', 'En cours')], default='PENDING', max_length=10, verbose_name='Statut')),
-                ('village', models.CharField(choices=[('FOTETSA', 'Fotetsa'), ('FONGO-NDENG', 'Fongo-Ndeng'), ('FOSSONG-WENTCHENG', 'Fossong-Wentcheng'), ('FONDONERA', 'Fondonera')], max_length=20, verbose_name='Village')),
-                ('registration_fee', models.DecimalField(decimal_places=2, default=0.0, max_digits=10, validators=[django.core.validators.MinValueValidator(limit_value=0.0, message="Le montant de l'inscription ne peut être négatif")], verbose_name='Montant Inscription')),
-                ('operation_fee', models.DecimalField(decimal_places=2, default=0.0, max_digits=10, validators=[django.core.validators.MinValueValidator(limit_value=0.0, message="Le montant de l'inscription ne peut être négatif")], verbose_name='Montant Inscription')),
-                ('profession', models.CharField(blank=True, max_length=100, null=True, verbose_name='Profession')),
-                ('address', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='ade4.address', to_field='raw_address')),
-                ('registration_date', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='ade4.meeting')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("first_name", models.CharField(max_length=255, verbose_name="Prénom")),
+                ("last_name", models.CharField(max_length=255, verbose_name="Nom")),
+                (
+                    "sex",
+                    models.CharField(
+                        choices=[
+                            ("MALE", "Homme"),
+                            ("FEMALE", "Femme"),
+                            ("OTHER", "Autre"),
+                        ],
+                        max_length=6,
+                        verbose_name="Sexe",
+                    ),
+                ),
+                (
+                    "phone",
+                    models.CharField(
+                        blank=True,
+                        max_length=30,
+                        null=True,
+                        verbose_name="N° Téléphone",
+                    ),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("ACTIVE", "Actif"),
+                            ("INACTIVE", "Inactif"),
+                            ("PENDING", "En cours"),
+                        ],
+                        default="PENDING",
+                        max_length=10,
+                        verbose_name="Statut",
+                    ),
+                ),
+                (
+                    "village",
+                    models.CharField(
+                        choices=[
+                            ("FOTETSA", "Fotetsa"),
+                            ("FONGO-NDENG", "Fongo-Ndeng"),
+                            ("FOSSONG-WENTCHENG", "Fossong-Wentcheng"),
+                            ("FONDONERA", "Fondonera"),
+                        ],
+                        max_length=20,
+                        verbose_name="Village",
+                    ),
+                ),
+                (
+                    "registration_fee",
+                    models.DecimalField(
+                        decimal_places=2,
+                        default=0.0,
+                        max_digits=10,
+                        validators=[
+                            django.core.validators.MinValueValidator(
+                                limit_value=0.0,
+                                message="Le montant de l'inscription ne peut être négatif",
+                            )
+                        ],
+                        verbose_name="Montant Inscription",
+                    ),
+                ),
+                (
+                    "operation_fee",
+                    models.DecimalField(
+                        decimal_places=2,
+                        default=0.0,
+                        max_digits=10,
+                        validators=[
+                            django.core.validators.MinValueValidator(
+                                limit_value=0.0,
+                                message="Le montant de l'inscription ne peut être négatif",
+                            )
+                        ],
+                        verbose_name="Montant Inscription",
+                    ),
+                ),
+                (
+                    "profession",
+                    models.CharField(
+                        blank=True, max_length=100, null=True, verbose_name="Profession"
+                    ),
+                ),
+                (
+                    "address",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="ade4.address",
+                        to_field="raw_address",
+                    ),
+                ),
+                (
+                    "registration_date",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="ade4.meeting",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='ReceptionRound',
+            name="ReceptionRound",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('end_date', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='end_reception_round', to='ade4.meeting', to_field='date')),
-                ('start_date', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='start_reception_round', to='ade4.meeting', to_field='date')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "end_date",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="end_reception_round",
+                        to="ade4.meeting",
+                        to_field="date",
+                    ),
+                ),
+                (
+                    "start_date",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="start_reception_round",
+                        to="ade4.meeting",
+                        to_field="date",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Reception Round',
-                'verbose_name_plural': 'Reception Rounds',
-                'ordering': ['-start_date__date'],
+                "verbose_name": "Reception Round",
+                "verbose_name_plural": "Reception Rounds",
+                "ordering": ["-start_date__date"],
             },
         ),
         migrations.CreateModel(
-            name='Skill',
+            name="Skill",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('title', models.CharField(max_length=100, unique=True, verbose_name='Skill')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "title",
+                    models.CharField(max_length=100, unique=True, verbose_name="Skill"),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='User',
+            name="User",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('email', models.EmailField(max_length=255, unique=True, verbose_name='Email')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "email",
+                    models.EmailField(
+                        max_length=255, unique=True, verbose_name="Email"
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='TontineRound',
+            name="TontineRound",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('pots', models.FloatField(default=1, verbose_name='NB Noms')),
-                ('amount_per_pot', models.DecimalField(decimal_places=2, default=0.0, max_digits=10)),
-                ('end_date', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='end_tontine_round', to='ade4.meeting')),
-                ('start_date', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='start_tontine_round', to='ade4.meeting')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("pots", models.FloatField(default=1, verbose_name="NB Noms")),
+                (
+                    "amount_per_pot",
+                    models.DecimalField(decimal_places=2, default=0.0, max_digits=10),
+                ),
+                (
+                    "end_date",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="end_tontine_round",
+                        to="ade4.meeting",
+                    ),
+                ),
+                (
+                    "start_date",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="start_tontine_round",
+                        to="ade4.meeting",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Tontine Round',
-                'verbose_name_plural': 'Tontine Rounds',
-                'ordering': ['-start_date__date'],
+                "verbose_name": "Tontine Round",
+                "verbose_name_plural": "Tontine Rounds",
+                "ordering": ["-start_date__date"],
             },
         ),
         migrations.CreateModel(
-            name='OrgTransaction',
+            name="OrgTransaction",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('title', models.CharField(max_length=255)),
-                ('amount', models.DecimalField(decimal_places=2, default=0.0, max_digits=10)),
-                ('account', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='ade4.accounttype')),
-                ('meeting', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='ade4.meeting')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("title", models.CharField(max_length=255)),
+                (
+                    "amount",
+                    models.DecimalField(decimal_places=2, default=0.0, max_digits=10),
+                ),
+                (
+                    "account",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="ade4.accounttype",
+                    ),
+                ),
+                (
+                    "meeting",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="ade4.meeting",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='MemberTransaction',
+            name="MemberTransaction",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('title', models.CharField(max_length=255)),
-                ('amount', models.DecimalField(decimal_places=2, default=0.0, max_digits=10)),
-                ('account', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='ade4.accounttype')),
-                ('meeting', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='ade4.meeting')),
-                ('member', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='ade4.member')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("title", models.CharField(max_length=255)),
+                (
+                    "amount",
+                    models.DecimalField(decimal_places=2, default=0.0, max_digits=10),
+                ),
+                (
+                    "account",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="ade4.accounttype",
+                    ),
+                ),
+                (
+                    "meeting",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="ade4.meeting",
+                    ),
+                ),
+                (
+                    "member",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING, to="ade4.member"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Member Transaction',
-                'verbose_name_plural': 'Member Transactions',
-                'ordering': ['-created_at'],
+                "verbose_name": "Member Transaction",
+                "verbose_name_plural": "Member Transactions",
+                "ordering": ["-created_at"],
             },
         ),
         migrations.AddField(
-            model_name='member',
-            name='skills',
-            field=models.ManyToManyField(to='ade4.skill'),
+            model_name="member",
+            name="skills",
+            field=models.ManyToManyField(to="ade4.skill"),
         ),
         migrations.AddField(
-            model_name='member',
-            name='user',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.DO_NOTHING, to='ade4.user'),
+            model_name="member",
+            name="user",
+            field=models.OneToOneField(
+                on_delete=django.db.models.deletion.DO_NOTHING, to="ade4.user"
+            ),
         ),
         migrations.AddField(
-            model_name='meeting',
-            name='hosts',
-            field=models.ManyToManyField(related_name='hosted_meetings', through='ade4.Hosts', to='ade4.member'),
+            model_name="meeting",
+            name="hosts",
+            field=models.ManyToManyField(
+                related_name="hosted_meetings", through="ade4.Hosts", to="ade4.member"
+            ),
         ),
         migrations.AddField(
-            model_name='hosts',
-            name='meeting',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='member_list', to='ade4.meeting', to_field='date'),
+            model_name="hosts",
+            name="meeting",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="member_list",
+                to="ade4.meeting",
+                to_field="date",
+            ),
         ),
         migrations.AddField(
-            model_name='hosts',
-            name='member',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='meeting_list', to='ade4.member'),
+            model_name="hosts",
+            name="member",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="meeting_list",
+                to="ade4.member",
+            ),
         ),
         migrations.AddField(
-            model_name='hosts',
-            name='reception_round',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='ade4.receptionround'),
+            model_name="hosts",
+            name="reception_round",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="ade4.receptionround",
+            ),
         ),
         migrations.CreateModel(
-            name='DocumentChapter',
+            name="DocumentChapter",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('title', models.CharField(max_length=255, verbose_name='Intitulé')),
-                ('chapter_number', models.PositiveSmallIntegerField(blank=True, verbose_name='N°')),
-                ('doc_type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='chapters', to='ade4.documenttype')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("title", models.CharField(max_length=255, verbose_name="Intitulé")),
+                (
+                    "chapter_number",
+                    models.PositiveSmallIntegerField(blank=True, verbose_name="N°"),
+                ),
+                (
+                    "doc_type",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="chapters",
+                        to="ade4.documenttype",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Document Chapter',
-                'verbose_name_plural': 'Document Chapters',
-                'ordering': ['doc_type', 'title'],
+                "verbose_name": "Document Chapter",
+                "verbose_name_plural": "Document Chapters",
+                "ordering": ["doc_type", "title"],
             },
         ),
         migrations.CreateModel(
-            name='DocumentArticle',
+            name="DocumentArticle",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('content', models.CharField(max_length=255, verbose_name='Intitulé')),
-                ('article_number', models.PositiveSmallIntegerField(blank=True, verbose_name='N°')),
-                ('chapter', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='articles', to='ade4.documentchapter')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("content", models.CharField(max_length=255, verbose_name="Intitulé")),
+                (
+                    "article_number",
+                    models.PositiveSmallIntegerField(blank=True, verbose_name="N°"),
+                ),
+                (
+                    "chapter",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="articles",
+                        to="ade4.documentchapter",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Document Article',
-                'verbose_name_plural': 'Document Articles',
-                'ordering': ['chapter__doc_type', 'chapter', 'article_number'],
+                "verbose_name": "Document Article",
+                "verbose_name_plural": "Document Articles",
+                "ordering": ["chapter__doc_type", "chapter", "article_number"],
             },
         ),
         migrations.CreateModel(
-            name='BoardMember',
+            name="BoardMember",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('board', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='ade4.board')),
-                ('member', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='ade4.member')),
-                ('position', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='ade4.boardposition')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "board",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="ade4.board",
+                    ),
+                ),
+                (
+                    "member",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="ade4.member",
+                    ),
+                ),
+                (
+                    "position",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="ade4.boardposition",
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-created_at'],
+                "ordering": ["-created_at"],
             },
         ),
         migrations.AddField(
-            model_name='board',
-            name='end_date',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='end_board', to='ade4.meeting', to_field='date'),
+            model_name="board",
+            name="end_date",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="end_board",
+                to="ade4.meeting",
+                to_field="date",
+            ),
         ),
         migrations.AddField(
-            model_name='board',
-            name='start_date',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='start_board', to='ade4.meeting', to_field='date'),
+            model_name="board",
+            name="start_date",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="start_board",
+                to="ade4.meeting",
+                to_field="date",
+            ),
         ),
         migrations.CreateModel(
-            name='TontineRecipient',
+            name="TontineRecipient",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('received_amount', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('meeting', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='recipient_dates', to='ade4.meeting', to_field='date')),
-                ('member', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='recipient_list', to='ade4.member')),
-                ('tontine_round', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='ade4.receptionround')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "received_amount",
+                    models.DecimalField(decimal_places=2, max_digits=10),
+                ),
+                (
+                    "meeting",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="recipient_dates",
+                        to="ade4.meeting",
+                        to_field="date",
+                    ),
+                ),
+                (
+                    "member",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="recipient_list",
+                        to="ade4.member",
+                    ),
+                ),
+                (
+                    "tontine_round",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="ade4.receptionround",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Tontine Recipient',
-                'verbose_name_plural': 'Tontine Recipients',
-                'ordering': ['-meeting__date', 'member__first_name'],
-                'unique_together': {('tontine_round', 'meeting', 'member')},
+                "verbose_name": "Tontine Recipient",
+                "verbose_name_plural": "Tontine Recipients",
+                "ordering": ["-meeting__date", "member__first_name"],
+                "unique_together": {("tontine_round", "meeting", "member")},
             },
         ),
         migrations.AlterUniqueTogether(
-            name='hosts',
-            unique_together={('reception_round', 'meeting', 'member')},
+            name="hosts",
+            unique_together={("reception_round", "meeting", "member")},
         ),
     ]
