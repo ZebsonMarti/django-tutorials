@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # Third Party Apps
+    "crispy_forms",
+    "crispy_tailwind",
 
     # Own Apps
     'authapp.apps.AuthappConfig',
@@ -145,3 +147,7 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = 'authapp.User'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
+CRISPY_TEMPLATE_PACK = "tailwind"
