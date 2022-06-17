@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'authapp.apps.AuthappConfig',
     'home.apps.HomeConfig',
     'ade4.apps.Ade4Config',
+    'bookshtmx.apps.BookshtmxConfig',
 ]
 
 MIDDLEWARE = [
