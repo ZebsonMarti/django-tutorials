@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Books</title>
+</head>
+<body>
+    <h1>Create books for {{ author.name }}</h1>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        {{ formset.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>
