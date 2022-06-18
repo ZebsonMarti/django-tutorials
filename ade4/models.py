@@ -494,28 +494,105 @@ class DocumentHistory(TimestampMixin):
     comment = models.TextField()
 
     class Meta:
-        verbose_name = 'Document'
-        verbose_name_plural = 'Documents'
-        ordering = ['-updated_at']
+        verbose_name = "Document"
+        verbose_name_plural = "Documents"
+        ordering = ["-updated_at"]
 
 
 class Sanction(TimestampMixin):
-    FINANCIAL = 'FI'
-    NON_FINANCIAL = 'NF'
-    BOTH = 'BO'
+    class Meta:
+        verbose_name = _t('Sanction')
+        verbose_name_plural = _t('Sanctions')
+        ordering = ['-meeting__date']
+
+    FINANCIAL = "FI"
+    NON_FINANCIAL = "NF"
+    BOTH = "BO"
     SANCTION_TYPES = [
         (FINANCIAL, _t("Financière")),
         (NON_FINANCIAL, _t("Non Financière")),
         (BOTH, _t("Les deux")),
     ]
 
-    meeting = models.ForeignKey(to=Meeting, verbose_name=_t("Séance"), on_delete=models.DO_NOTHING, null=False, blank=False)
-    member = models.ForeignKey(to=Member, verbose_name=_t('Membre'), on_delete=models.CASCADE, null=False, blank=False)
-    reason = models.CharField(verbose_name=_t("Raison"), max_length=255, null=False, blank=False)
-    sanction_type = models.CharField(verbose_name=_t("Type Sanction"), max_length=2, choices=SANCTION_TYPES, default=FINANCIAL, null=False, blank=False)
-    amount = models.DecimalField(verbose_name=_t('Montant'), max_digits=5, decimal_places=2, null=True, blank=True)
-    title = models.CharField(verbose_name=_t('Sanction'), max_length=200, null=True, blank=True)
-    executed_or_paid = models.BooleanField(verbose_name=_t('Exécutée ou Payée?'), null=False, blank=False, default=False)
+    meeting = models.ForeignKey(
+        to=Meeting,
+        verbose_name=_t("Séance"),
+        on_delete=models.DO_NOTHING,
+        null=False,
+        blank=False,
+    )
+    member = models.ForeignKey(
+        to=Member,
+        verbose_name=_t("Membre"),
+        on_delete=models.CASCADE,
+        null=False,
+        blank=False,
+    )
+    reason = models.CharField(
+        verbose_name=_t("Raison"), max_length=255, null=False, blank=False
+    )
+    sanction_type = models.CharField(
+        verbose_name=_t("Type Sanction"),
+        max_length=2,
+        choices=SANCTION_TYPES,
+        default=FINANCIAL,
+        null=False,
+        blank=False,
+    )
+    amount = models.DecimalField(
+        verbose_name=_t("Montant"),
+        max_digits=5,
+        decimal_places=2,
+        null=True,
+        blank=True,
+    )
+    title = models.CharField(
+        verbose_name=_t("Sanction"), max_length=200, null=True, blank=True
+    )
+    executed_or_paid = models.BooleanField(
+        verbose_name=_t("Exécutée ou Payée?"), null=False, blank=False, default=False
+    )
+
+    def __str__(self):
+        return f"{self.meeting}: {self.member}: {self.amount}: {self.title}"
+
+    @property
+    def type(self):
+        return dict(self.SANCTION_TYPES)[self.sanction_type]
+
+
+class Absence(TimestampMixin):
+    class Meta:
+        verbose_name = _t('Absence')
+        verbose_name_plural = _t('Absences')
+        ordering = ["-meeting__date"]
+
+    meeting = models.ForeignKey(
+        to=Meeting,
+        verbose_name=_t("Séance"),
+        on_delete=models.DO_NOTHING,
+        null=False,
+        blank=False,
+    )
+    member = models.ForeignKey(
+        to=Member,
+        verbose_name=_t("Membre"),
+        on_delete=models.CASCADE,
+        null=False,
+        blank=False,
+    )
+    reason = models.CharField(
+        verbose_name=_t("Raison"), max_length=255, null=False, blank=False
+    )
+    justified = models.BooleanField(
+        verbose_name=_t("Justifiée?"), null=False, blank=False, default=False
+    )
+    sanctioned = models.BooleanField(
+        verbose_name=_t("Sanctionné?"), null=False, blank=False, default=False
+    )
+
+    def __str__(self):
+        return f"{self.meeting}: {self.member}: {self.reason}"
 
 
 # class DocumentChapter(TimestampMixin):
