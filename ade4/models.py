@@ -499,6 +499,24 @@ class DocumentHistory(TimestampMixin):
         ordering = ['-updated_at']
 
 
+class Sanction(TimestampMixin):
+    FINANCIAL = 'FI'
+    NON_FINANCIAL = 'NF'
+    BOTH = 'BO'
+    SANCTION_TYPES = [
+        (FINANCIAL, _t("Financière")),
+        (NON_FINANCIAL, _t("Non Financière")),
+        (BOTH, _t("Les deux")),
+    ]
+
+    meeting = models.ForeignKey(to=Meeting, verbose_name=_t("Séance"), on_delete=models.DO_NOTHING, null=False, blank=False)
+    member = models.ForeignKey(to=Member, verbose_name=_t('Membre'), on_delete=models.CASCADE, null=False, blank=False)
+    reason = models.CharField(verbose_name=_t("Raison"), max_length=255, null=False, blank=False)
+    sanction_type = models.CharField(verbose_name=_t("Type Sanction"), max_length=2, choices=SANCTION_TYPES, default=FINANCIAL, null=False, blank=False)
+    amount = models.DecimalField(verbose_name=_t('Montant'), max_digits=5, decimal_places=2, null=True, blank=True)
+    title = models.CharField(verbose_name=_t('Sanction'), max_length=200, null=True, blank=True)
+    executed_or_paid = models.BooleanField(verbose_name=_t('Exécutée ou Payée?'), null=False, blank=False, default=False)
+
 
 # class DocumentChapter(TimestampMixin):
 #     title = models.CharField(verbose_name="Intitulé", max_length=255)
