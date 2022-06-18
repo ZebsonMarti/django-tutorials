@@ -7,30 +7,62 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ade4', '0005_sanction'),
+        ("ade4", "0005_sanction"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='sanction',
-            options={'ordering': ['-meeting__date'], 'verbose_name': 'Sanction', 'verbose_name_plural': 'Sanctions'},
+            name="sanction",
+            options={
+                "ordering": ["-meeting__date"],
+                "verbose_name": "Sanction",
+                "verbose_name_plural": "Sanctions",
+            },
         ),
         migrations.CreateModel(
-            name='Absence',
+            name="Absence",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('reason', models.CharField(max_length=255, verbose_name='Raison')),
-                ('justified', models.BooleanField(default=False, verbose_name='Justifiée?')),
-                ('sanctioned', models.BooleanField(default=False, verbose_name='Sanctionné?')),
-                ('meeting', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='ade4.meeting', verbose_name='Séance')),
-                ('member', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ade4.member', verbose_name='Membre')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("reason", models.CharField(max_length=255, verbose_name="Raison")),
+                (
+                    "justified",
+                    models.BooleanField(default=False, verbose_name="Justifiée?"),
+                ),
+                (
+                    "sanctioned",
+                    models.BooleanField(default=False, verbose_name="Sanctionné?"),
+                ),
+                (
+                    "meeting",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="ade4.meeting",
+                        verbose_name="Séance",
+                    ),
+                ),
+                (
+                    "member",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="ade4.member",
+                        verbose_name="Membre",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Absence',
-                'verbose_name_plural': 'Absences',
-                'ordering': ['-meeting__date'],
+                "verbose_name": "Absence",
+                "verbose_name_plural": "Absences",
+                "ordering": ["-meeting__date"],
             },
         ),
     ]

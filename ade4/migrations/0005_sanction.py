@@ -7,26 +7,79 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ade4', '0004_documenthistory_remove_documentchapter_doc_type_and_more'),
+        ("ade4", "0004_documenthistory_remove_documentchapter_doc_type_and_more"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Sanction',
+            name="Sanction",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('reason', models.CharField(max_length=255, verbose_name='Raison')),
-                ('sanction_type', models.CharField(choices=[('FI', 'Financière'), ('NF', 'Non Financière'), ('BO', 'Les deux')], default='FI', max_length=2, verbose_name='Type Sanction')),
-                ('amount', models.DecimalField(blank=True, decimal_places=2, max_digits=5, null=True, verbose_name='Montant')),
-                ('title', models.CharField(blank=True, max_length=200, null=True, verbose_name='Sanction')),
-                ('executed_or_paid', models.BooleanField(default=False, verbose_name='Exécutée ou Payée?')),
-                ('meeting', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='ade4.meeting', verbose_name='Séance')),
-                ('member', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ade4.member', verbose_name='Membre')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("reason", models.CharField(max_length=255, verbose_name="Raison")),
+                (
+                    "sanction_type",
+                    models.CharField(
+                        choices=[
+                            ("FI", "Financière"),
+                            ("NF", "Non Financière"),
+                            ("BO", "Les deux"),
+                        ],
+                        default="FI",
+                        max_length=2,
+                        verbose_name="Type Sanction",
+                    ),
+                ),
+                (
+                    "amount",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        max_digits=5,
+                        null=True,
+                        verbose_name="Montant",
+                    ),
+                ),
+                (
+                    "title",
+                    models.CharField(
+                        blank=True, max_length=200, null=True, verbose_name="Sanction"
+                    ),
+                ),
+                (
+                    "executed_or_paid",
+                    models.BooleanField(
+                        default=False, verbose_name="Exécutée ou Payée?"
+                    ),
+                ),
+                (
+                    "meeting",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="ade4.meeting",
+                        verbose_name="Séance",
+                    ),
+                ),
+                (
+                    "member",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="ade4.member",
+                        verbose_name="Membre",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

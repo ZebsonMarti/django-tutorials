@@ -97,7 +97,29 @@ class DocumentTypeAdmin(admin.ModelAdmin):
 
 @admin.register(m.DocumentHistory)
 class DocumentHistoryAdmin(admin.ModelAdmin):
-    list_display = ['document_type', 'content', 'comment']
+    list_display = ["document_type", "content", "comment"]
+
+
+@admin.register(m.Sanction)
+class SanctionAdmin(admin.ModelAdmin):
+    list_display = ["meeting", "member", "reason", "amount", "sanction_type"]
+
+
+@admin.register(m.Absence)
+class AbsenceAdmin(admin.ModelAdmin):
+    list_display = ["meeting", "member", "reason", "justified", "sanctioned"]
+
+
+@admin.register(m.Aid)
+class AidAdmin(admin.ModelAdmin):
+    list_display = [
+        "member",
+        "reason",
+        "disbursed_amount",
+        "disbursal_meeting",
+        "recovery_meeting",
+        "amount_to_recover_by_member",
+    ]
 
 
 # @admin.register(m.DocumentChapter)

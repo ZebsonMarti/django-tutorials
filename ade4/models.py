@@ -501,9 +501,9 @@ class DocumentHistory(TimestampMixin):
 
 class Sanction(TimestampMixin):
     class Meta:
-        verbose_name = _t('Sanction')
-        verbose_name_plural = _t('Sanctions')
-        ordering = ['-meeting__date']
+        verbose_name = _t("Sanction")
+        verbose_name_plural = _t("Sanctions")
+        ordering = ["-meeting"]
 
     FINANCIAL = "FI"
     NON_FINANCIAL = "NF"
@@ -520,6 +520,7 @@ class Sanction(TimestampMixin):
         on_delete=models.DO_NOTHING,
         null=False,
         blank=False,
+        related_name='sanctions'
     )
     member = models.ForeignKey(
         to=Member,
@@ -527,6 +528,7 @@ class Sanction(TimestampMixin):
         on_delete=models.CASCADE,
         null=False,
         blank=False,
+        related_name='sanctions'
     )
     reason = models.CharField(
         verbose_name=_t("Raison"), max_length=255, null=False, blank=False
@@ -563,9 +565,9 @@ class Sanction(TimestampMixin):
 
 class Absence(TimestampMixin):
     class Meta:
-        verbose_name = _t('Absence')
-        verbose_name_plural = _t('Absences')
-        ordering = ["-meeting__date"]
+        verbose_name = _t("Absence")
+        verbose_name_plural = _t("Absences")
+        # ordering = ["-meeting__date"]
 
     meeting = models.ForeignKey(
         to=Meeting,
@@ -573,6 +575,7 @@ class Absence(TimestampMixin):
         on_delete=models.DO_NOTHING,
         null=False,
         blank=False,
+        related_name='absences'
     )
     member = models.ForeignKey(
         to=Member,
@@ -580,6 +583,7 @@ class Absence(TimestampMixin):
         on_delete=models.CASCADE,
         null=False,
         blank=False,
+        related_name='absences'
     )
     reason = models.CharField(
         verbose_name=_t("Raison"), max_length=255, null=False, blank=False
@@ -593,6 +597,62 @@ class Absence(TimestampMixin):
 
     def __str__(self):
         return f"{self.meeting}: {self.member}: {self.reason}"
+
+
+class Aid(TimestampMixin):
+    class Meta:
+        verbose_name = _t("Aide")
+        verbose_name_plural = _t("Aides")
+        # ordering = ["-meeting__date"]
+
+    member = models.ForeignKey(
+        to=Member,
+        verbose_name=_t("Membre"),
+        on_delete=models.CASCADE,
+        null=False,
+        blank=False,
+        related_name='aids'
+    )
+
+    reason = models.CharField(
+        verbose_name=_t("Motif Aide"), max_length=255, null=False, blank=False
+    )
+
+    disbursed_amount = models.DecimalField(
+        verbose_name=_t("Montant décaissé"),
+        max_digits=8,
+        decimal_places=2,
+        null=False,
+        blank=False,
+    )
+
+    amount_to_recover_by_member = models.DecimalField(
+        verbose_name=_t("Montant à recouver par membre"),
+        max_digits=8,
+        decimal_places=2,
+        null=False,
+        blank=True,
+    )
+
+    disbursal_meeting = models.ForeignKey(
+        to=Meeting,
+        verbose_name=_t("Séance Décaissement"),
+        on_delete=models.DO_NOTHING,
+        null=False,
+        blank=False,
+        related_name='aids'
+    )
+    recovery_meeting = models.ForeignKey(
+        to=Meeting,
+        verbose_name=_t("Séance Recouvrement"),
+        on_delete=models.DO_NOTHING,
+        null=False,
+        blank=False,
+        related_name='aids_to_recover'
+    )
+
+    def __str__(self):
+        return f"{self.member}: {self.disbursal_meeting}: {self.disbursed_amount}"
 
 
 # class DocumentChapter(TimestampMixin):
