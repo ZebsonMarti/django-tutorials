@@ -15,9 +15,9 @@ from ade4.data.service import (
     insert_member_transactions,
     insert_org_transactions,
     insert_document_types,
-insert_sanctions,
-insert_absences,
-insert_aids,
+    insert_sanctions,
+    insert_absences,
+    insert_aids,
 )
 from ade4.data.raw_data import (
     constants,
@@ -35,9 +35,9 @@ from ade4.data.raw_data import (
     member_transactions,
     org_transactions,
     document_types,
-sanctions,
-absences,
-aid_list,
+    sanctions,
+    absences,
+    aid_list,
 )
 
 
