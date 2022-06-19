@@ -15,6 +15,9 @@ from ade4.data.service import (
     insert_member_transactions,
     insert_org_transactions,
     insert_document_types,
+insert_sanctions,
+insert_absences,
+insert_aids,
 )
 from ade4.data.raw_data import (
     constants,
@@ -32,6 +35,9 @@ from ade4.data.raw_data import (
     member_transactions,
     org_transactions,
     document_types,
+sanctions,
+absences,
+aid_list,
 )
 
 
@@ -54,6 +60,9 @@ class Command(BaseCommand):
         _ = insert_member_transactions(transaction_list=member_transactions)
         _ = insert_org_transactions(transaction_list=org_transactions)
         _ = insert_document_types(document_type_list=document_types)
+        _ = insert_sanctions(sanction_list=sanctions)
+        _ = insert_absences(absence_list=absences)
+        _ = insert_aids(aid_list=aid_list)
 
         self.stdout.write(self.style.SUCCESS(f"All data have been inserted"))
         # try:

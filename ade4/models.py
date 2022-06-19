@@ -627,7 +627,7 @@ class Aid(TimestampMixin):
     )
 
     amount_to_recover_by_member = models.DecimalField(
-        verbose_name=_t("Montant à recouver par membre"),
+        verbose_name=_t("Montant à recouvrer par membre"),
         max_digits=8,
         decimal_places=2,
         null=False,

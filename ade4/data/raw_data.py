@@ -1646,4 +1646,371 @@ chapters = [
     },
 ]
 
-# DocumentArticle
+# Sanction
+sanction_reasons = [
+    "Trouble au bon déroulement de la réunion",
+    "Arrivée tardive à l'assemblée général",
+    "Port d'une tenue non autorisée",
+    "Non respect d'une décision prise par l'assemblée générale",
+]
+
+sanctions = [
+    # 2018
+    {
+        "meeting": m_02_2018,
+        "members": [],
+    },
+    {
+        "meeting": m_04_2018,
+        "members": [],
+    },
+    {
+        "meeting": m_06_2018,
+        "members": [],
+    },
+    {
+        "meeting": m_08_2018,
+        "members": [],
+    },
+    {
+        "meeting": m_10_2018,
+        "members": [],
+    },
+    {
+        "meeting": m_12_2018,
+        "members": [],
+    },
+    # 2019
+    {
+        "meeting": m_02_2019,
+        "members": [],
+    },
+    {
+        "meeting": m_04_2019,
+        "members": [
+            {
+                "name": john_smith,
+                "reason": choice(sanction_reasons),
+                "amount": 1,
+                "executed_or_paid": True,
+            },
+            {
+                "name": longue,
+                "reason": choice(sanction_reasons),
+                "amount": 2,
+                "executed_or_paid": True,
+            },
+            {
+                "name": lady_ponce,
+                "reason": choice(sanction_reasons),
+                "amount": 2,
+                "executed_or_paid": True,
+            },
+        ],
+    },
+    {
+        "meeting": m_06_2019,
+        "members": [],
+    },
+    {
+        "meeting": m_08_2019,
+        "members": [
+            {
+                "name": malhox,
+                "reason": choice(sanction_reasons),
+                "amount": 1,
+                "executed_or_paid": True,
+            },
+            {
+                "name": petit_pays,
+                "reason": choice(sanction_reasons),
+                "amount": 2,
+                "executed_or_paid": True,
+            },
+            {
+                "name": tom_cruise,
+                "reason": choice(sanction_reasons),
+                "amount": 2,
+                "executed_or_paid": True,
+            },
+        ],
+    },
+    {
+        "meeting": m_10_2019,
+        "members": [],
+    },
+    {
+        "meeting": m_12_2019,
+        "members": [],
+    },
+    # 2020
+    {
+        "meeting": m_02_2020,
+        "members": [],
+    },
+    {
+        "meeting": m_04_2020,
+        "members": [
+            {
+                "name": angelina_jolie,
+                "reason": choice(sanction_reasons),
+                "amount": 5,
+                "executed_or_paid": True,
+            },
+            {
+                "name": nyangono,
+                "reason": choice(sanction_reasons),
+                "amount": 2,
+                "executed_or_paid": True,
+            },
+        ],
+    },
+    {
+        "meeting": m_06_2020,
+        "members": [],
+    },
+    {
+        "meeting": m_08_2020,
+        "members": [],
+    },
+    {
+        "meeting": m_10_2020,
+        "members": [],
+    },
+    {
+        "meeting": m_12_2020,
+        "members": [],
+    },
+    # 2021
+    {
+        "meeting": m_02_2021,
+        "members": [],
+    },
+    {
+        "meeting": m_04_2021,
+        "members": [],
+    },
+    {
+        "meeting": m_06_2021,
+        "members": [],
+    },
+    {
+        "meeting": m_08_2021,
+        "members": [],
+    },
+    {
+        "meeting": m_10_2021,
+        "members": [],
+    },
+    {
+        "meeting": m_12_2021,
+        "members": [],
+    },
+    # 2022
+    {
+        "meeting": m_02_2022,
+        "members": [],
+    },
+    {
+        "meeting": m_04_2022,
+        "members": [
+            {
+                "name": takam,
+                "reason": choice(sanction_reasons),
+                "amount": 2,
+                "executed_or_paid": False,
+            },
+            {
+                "name": poupi,
+                "reason": choice(sanction_reasons),
+                "amount": 5,
+                "executed_or_paid": False,
+            },
+        ],
+    },
+    {
+        "meeting": m_06_2022,
+        "members": [
+            {
+                "name": lady_ponce,
+                "reason": choice(sanction_reasons),
+                "amount": 2,
+                "executed_or_paid": False,
+            },
+            {
+                "name": longue,
+                "reason": choice(sanction_reasons),
+                "amount": 2,
+                "executed_or_paid": False,
+            },
+            {
+                "name": petit_pays,
+                "reason": choice(sanction_reasons),
+                "amount": 4,
+                "executed_or_paid": False,
+            },
+        ],
+    },
+]
+
+# Absence
+abs_reasons = [
+    "En déplacement pour le Cameroun",
+    "Absence pour cause de maladie",
+    "Empêchement de dernière minute",
+    "Absence pour raison professionnelle",
+]
+absences = [
+    # 2018
+    {
+        "meeting": m_02_2018,
+        "members": [],
+    },
+    {
+        "meeting": m_04_2018,
+        "members": [
+            {"name": john_smith, "reason": choice(abs_reasons)},
+            {"name": angelina_jolie, "reason": choice(abs_reasons)},
+        ],
+    },
+    {
+        "meeting": m_06_2018,
+        "members": [],
+    },
+    {
+        "meeting": m_08_2018,
+        "members": [],
+    },
+    {
+        "meeting": m_10_2018,
+        "members": [
+            {"name": petit_pays, "reason": choice(abs_reasons)},
+            {"name": tom_cruise, "reason": choice(abs_reasons)},
+        ],
+    },
+    {
+        "meeting": m_12_2018,
+        "members": [],
+    },
+    # 2019
+    {
+        "meeting": m_02_2019,
+        "members": [],
+    },
+    {
+        "meeting": m_04_2019,
+        "members": [
+            {"name": avero, "reason": choice(abs_reasons)},
+            {"name": julia_roberts, "reason": choice(abs_reasons)},
+            {"name": manu_dibango, "reason": choice(abs_reasons)},
+        ],
+    },
+    {
+        "meeting": m_06_2019,
+        "members": [],
+    },
+    {
+        "meeting": m_08_2019,
+        "members": [],
+    },
+    {
+        "meeting": m_10_2019,
+        "members": [],
+    },
+    {
+        "meeting": m_12_2019,
+        "members": [],
+    },
+    # 2020
+    {
+        "meeting": m_02_2020,
+        "members": [],
+    },
+    {
+        "meeting": m_04_2020,
+        "members": [],
+    },
+    {
+        "meeting": m_06_2020,
+        "members": [],
+    },
+    {
+        "meeting": m_08_2020,
+        "members": [],
+    },
+    {
+        "meeting": m_10_2020,
+        "members": [],
+    },
+    {
+        "meeting": m_12_2020,
+        "members": [],
+    },
+    # 2021
+    {
+        "meeting": m_02_2021,
+        "members": [],
+    },
+    {
+        "meeting": m_04_2021,
+        "members": [],
+    },
+    {
+        "meeting": m_06_2021,
+        "members": [],
+    },
+    {
+        "meeting": m_08_2021,
+        "members": [],
+    },
+    {
+        "meeting": m_10_2021,
+        "members": [],
+    },
+    {
+        "meeting": m_12_2021,
+        "members": [
+            {"name": murielle_blanche, "reason": choice(abs_reasons)},
+            {"name": poupi, "reason": choice(abs_reasons)},
+        ],
+    },
+    # 2022
+    {
+        "meeting": m_02_2022,
+        "members": [],
+    },
+    {
+        "meeting": m_04_2022,
+        "members": [
+            {"name": mbatremy, "reason": choice(abs_reasons)},
+            {"name": mitoumba, "reason": choice(abs_reasons)},
+        ],
+    },
+    {
+        "meeting": m_06_2022,
+        "members": [
+            {"name": kameni, "reason": choice(abs_reasons)},
+            {"name": daphne, "reason": choice(abs_reasons)},
+        ],
+    },
+]
+
+# Aid
+aid_list = [
+    {
+        "member": longue,
+        "reason": "Décès du Papa",
+        "disbursed_amount": 300,
+        "disbursal_meeting": m_10_2018,
+        "recovery_meeting": m_02_2019,
+        "amount_to_recover_by_member": 30,
+    },
+    {
+        "member": avero,
+        "reason": "Décès de la Maman",
+        "disbursed_amount": 300,
+        "disbursal_meeting": m_12_2018,
+        "recovery_meeting": m_04_2019,
+        "amount_to_recover_by_member": 30,
+    },
+]

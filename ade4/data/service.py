@@ -319,3 +319,92 @@ def insert_document_types(document_type_list: List[str]) -> bool:
         _ = DocumentType.objects.bulk_create(docs)
         return True
     return False
+
+
+def insert_sanctions(sanction_list: List[Dict]) -> bool:
+    table_empty = Sanction.objects.all().count() == 0
+    if table_empty:
+        sanctions = []
+        for s in sanction_list:
+            if s["members"]:
+                meeting = Meeting.objects.get(
+                    date=date.fromisoformat(s["meeting"]["date"])
+                )
+                for m in s["members"]:
+                    member = Member.objects.get(
+                        first_name__iexact=m["name"]["first_name"],
+                        last_name__iexact=m["name"]["last_name"],
+                    )
+                    sanctions.append(
+                        Sanction(
+                            member=member,
+                            meeting=meeting,
+                            reason=m["reason"],
+                            amount=m["amount"],
+                            executed_or_paid=m["executed_or_paid"],
+                        )
+                    )
+        _ = Sanction.objects.bulk_create(sanctions)
+        return True
+    return False
+
+
+def insert_absences(absence_list: List[Dict]) -> bool:
+    table_empty = Absence.objects.all().count() == 0
+    if table_empty:
+        absences = []
+        for s in absence_list:
+            if s["members"]:
+                meeting = Meeting.objects.get(
+                    date=date.fromisoformat(s["meeting"]["date"])
+                )
+                for m in s["members"]:
+                    member = Member.objects.get(
+                        first_name__iexact=m["name"]["first_name"],
+                        last_name__iexact=m["name"]["last_name"],
+                    )
+                    absences.append(
+                        Absence(
+                            member=member,
+                            meeting=meeting,
+                            reason=m["reason"],
+                        )
+                    )
+        _ = Absence.objects.bulk_create(absences)
+        return True
+    return False
+
+
+def insert_aids(aid_list: List[Dict]) -> bool:
+    table_empty = Aid.objects.all().count() == 0
+    if table_empty:
+        aids = []
+        for aid in aid_list:
+            first_name, last_name = (
+                aid["member"]["first_name"],
+                aid["member"]["last_name"],
+            )
+            member = Member.objects.get(
+                first_name__iexact=first_name,
+                last_name__iexact=last_name,
+            )
+            disbursal_meeting = Meeting.objects.get(
+                date=date.fromisoformat(aid["disbursal_meeting"]['date'])
+            )
+            recovery_meeting = Meeting.objects.get(
+                date=date.fromisoformat(aid["recovery_meeting"]['date'])
+            )
+            reason = f"{aid['reason']} de {first_name} {last_name}"
+            aids.append(
+                Aid(
+                    member=member,
+                    reason=reason,
+                    disbursed_amount=aid["disbursed_amount"],
+                    disbursal_meeting=disbursal_meeting,
+                    recovery_meeting=recovery_meeting,
+                    amount_to_recover_by_member=aid["amount_to_recover_by_member"],
+                )
+            )
+        _ = Aid.objects.bulk_create(aids)
+        return True
+    return False
