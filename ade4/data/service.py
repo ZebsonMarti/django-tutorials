@@ -266,9 +266,7 @@ def insert_member_transactions(transaction_list: List[Dict]) -> bool:
                 date=date.fromisoformat(mt["meeting"]["date"])
             )
             for transaction_type in mt["transactions"]:
-                account = Account.objects.get(
-                    title__iexact=transaction_type["account"]
-                )
+                account = Account.objects.get(title__iexact=transaction_type["account"])
                 for m in transaction_type["members"]:
                     # print("\n", m["name"], '\n')
                     member = Member.objects.get(
@@ -399,6 +397,7 @@ def insert_aids(aid_list: List[Dict]) -> bool:
                 Aid(
                     member=member,
                     reason=reason,
+                    aid_type=aid["aid_type"],
                     disbursed_amount=aid["disbursed_amount"],
                     disbursal_meeting=disbursal_meeting,
                     recovery_meeting=recovery_meeting,

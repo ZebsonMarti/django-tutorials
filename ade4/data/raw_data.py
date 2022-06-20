@@ -1,5 +1,6 @@
 from random import random, choice
 from ..models import AccountType as AT
+
 # Address
 
 raw_addresses = [
@@ -930,10 +931,16 @@ boards = [
 ]
 
 # AccountType
-secours, epargne = AT.ASSISTANCE, AT.SAVINGS # "Secours", "Épargne"
-epargne_scolaire, sanction = AT.SCHOLAR_SAVINGS, AT.SANCTION # "Épargne Scolaire", "Sanction"
-inscription, fond_roulement = AT.INSCRIPTION, AT.OPERATING_FEES # "Inscription", "Fond de Roulement"
-project, other = AT.PROJECT, AT.OTHER # "Projet"
+secours, epargne = AT.ASSISTANCE, AT.SAVINGS  # "Secours", "Épargne"
+epargne_scolaire, sanction = (
+    AT.SCHOLAR_SAVINGS,
+    AT.SANCTION,
+)  # "Épargne Scolaire", "Sanction"
+inscription, fond_roulement = (
+    AT.INSCRIPTION,
+    AT.OPERATING_FEES,
+)  # "Inscription", "Fond de Roulement"
+project, other = AT.PROJECT, AT.OTHER  # "Projet"
 
 account_types = [
     secours,
@@ -2004,6 +2011,7 @@ aid_list = [
         "disbursal_meeting": m_10_2018,
         "recovery_meeting": m_02_2019,
         "amount_to_recover_by_member": 30,
+        "aid_type": "ASSISTANCE",
     },
     {
         "member": avero,
@@ -2012,5 +2020,24 @@ aid_list = [
         "disbursal_meeting": m_12_2018,
         "recovery_meeting": m_04_2019,
         "amount_to_recover_by_member": 30,
+        "aid_type": "ASSISTANCE",
+    },
+    {
+        "member": avero,
+        "reason": "Anniversaire de Mariage",
+        "disbursed_amount": 100,
+        "disbursal_meeting": m_12_2021,
+        "recovery_meeting": m_12_2021,
+        "amount_to_recover_by_member": 5,
+        "aid_type": "HAPPINESS",
+    },
+    {
+        "member": takam,
+        "reason": "Naissance",
+        "disbursed_amount": 100,
+        "disbursal_meeting": m_02_2022,
+        "recovery_meeting": m_04_2022,
+        "amount_to_recover_by_member": 5,
+        "aid_type": "HAPPINESS",
     },
 ]

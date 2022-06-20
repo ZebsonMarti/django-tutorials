@@ -6,13 +6,27 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ade4', '0011_alter_account_title'),
+        ("ade4", "0011_alter_account_title"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='account',
-            name='title',
-            field=models.CharField(choices=[('assistance', 'Secours'), ('savings', 'Épargne'), ('scholar_savings', 'Épargne Scolaire'), ('project', 'Projet'), ('sanction', 'Sanction'), ('inscription', 'Inscription'), ('operation_fees', 'Fond de Roulement'), ('other', 'Autre')], max_length=30, unique=True, verbose_name='Name'),
+            model_name="account",
+            name="title",
+            field=models.CharField(
+                choices=[
+                    ("assistance", "Secours"),
+                    ("savings", "Épargne"),
+                    ("scholar_savings", "Épargne Scolaire"),
+                    ("project", "Projet"),
+                    ("sanction", "Sanction"),
+                    ("inscription", "Inscription"),
+                    ("operation_fees", "Fond de Roulement"),
+                    ("other", "Autre"),
+                ],
+                max_length=30,
+                unique=True,
+                verbose_name="Name",
+            ),
         ),
     ]

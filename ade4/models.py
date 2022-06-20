@@ -437,7 +437,12 @@ class Account(TimestampMixin):
     ]
 
     title = models.CharField(
-        verbose_name="Name", max_length=30, choices=AccountType.LIST, unique=True, null=False, blank=False
+        verbose_name="Name",
+        max_length=30,
+        choices=AccountType.LIST,
+        unique=True,
+        null=False,
+        blank=False,
     )
     code = models.CharField(verbose_name="Code", max_length=5, null=False, blank=False)
     used_for = models.CharField(
@@ -636,6 +641,13 @@ class Absence(TimestampMixin):
 
 
 class Aid(TimestampMixin):
+    ASSISTANCE, HAPPINESS, OTHER = "ASSISTANCE", "HAPPINESS", "OTHER"
+    AID_TYPES = [
+        (ASSISTANCE, _t("Secours")),
+        (HAPPINESS, _t("Bonheur")),
+        (OTHER, _t("Autre")),
+    ]
+
     class Meta:
         verbose_name = _t("Aide")
         verbose_name_plural = _t("Aides")
@@ -648,6 +660,10 @@ class Aid(TimestampMixin):
         null=False,
         blank=False,
         related_name="aids",
+    )
+
+    aid_type = models.CharField(
+        verbose_name=_t("Type Aide"), max_length=10, null=False, blank=False
     )
 
     reason = models.CharField(

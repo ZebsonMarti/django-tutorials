@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ade4', '0009_alter_accounttype_used_for'),
+        ("ade4", "0009_alter_accounttype_used_for"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='AccountType',
-            new_name='Account',
+            old_name="AccountType",
+            new_name="Account",
         ),
     ]
