@@ -7,54 +7,123 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ade4', '0006_alter_sanction_options_absence'),
+        ("ade4", "0006_alter_sanction_options_absence"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='absence',
-            options={'verbose_name': 'Absence', 'verbose_name_plural': 'Absences'},
+            name="absence",
+            options={"verbose_name": "Absence", "verbose_name_plural": "Absences"},
         ),
         migrations.AlterModelOptions(
-            name='sanction',
-            options={'ordering': ['-meeting'], 'verbose_name': 'Sanction', 'verbose_name_plural': 'Sanctions'},
+            name="sanction",
+            options={
+                "ordering": ["-meeting"],
+                "verbose_name": "Sanction",
+                "verbose_name_plural": "Sanctions",
+            },
         ),
         migrations.AlterField(
-            model_name='absence',
-            name='meeting',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='absences', to='ade4.meeting', verbose_name='Séance'),
+            model_name="absence",
+            name="meeting",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                related_name="absences",
+                to="ade4.meeting",
+                verbose_name="Séance",
+            ),
         ),
         migrations.AlterField(
-            model_name='absence',
-            name='member',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='absences', to='ade4.member', verbose_name='Membre'),
+            model_name="absence",
+            name="member",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="absences",
+                to="ade4.member",
+                verbose_name="Membre",
+            ),
         ),
         migrations.AlterField(
-            model_name='sanction',
-            name='meeting',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='sanctions', to='ade4.meeting', verbose_name='Séance'),
+            model_name="sanction",
+            name="meeting",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                related_name="sanctions",
+                to="ade4.meeting",
+                verbose_name="Séance",
+            ),
         ),
         migrations.AlterField(
-            model_name='sanction',
-            name='member',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='sanctions', to='ade4.member', verbose_name='Membre'),
+            model_name="sanction",
+            name="member",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="sanctions",
+                to="ade4.member",
+                verbose_name="Membre",
+            ),
         ),
         migrations.CreateModel(
-            name='Aid',
+            name="Aid",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('reason', models.CharField(max_length=255, verbose_name='Motif Aide')),
-                ('disbursed_amount', models.DecimalField(decimal_places=2, max_digits=8, verbose_name='Montant décaissé')),
-                ('amount_to_recover_by_member', models.DecimalField(blank=True, decimal_places=2, max_digits=8, verbose_name='Montant à recouver par membre')),
-                ('disbursal_meeting', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='aids', to='ade4.meeting', verbose_name='Séance Décaissement')),
-                ('member', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='aids', to='ade4.member', verbose_name='Membre')),
-                ('recovery_meeting', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='aids_to_recover', to='ade4.meeting', verbose_name='Séance Recouvrement')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("reason", models.CharField(max_length=255, verbose_name="Motif Aide")),
+                (
+                    "disbursed_amount",
+                    models.DecimalField(
+                        decimal_places=2, max_digits=8, verbose_name="Montant décaissé"
+                    ),
+                ),
+                (
+                    "amount_to_recover_by_member",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=2,
+                        max_digits=8,
+                        verbose_name="Montant à recouver par membre",
+                    ),
+                ),
+                (
+                    "disbursal_meeting",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        related_name="aids",
+                        to="ade4.meeting",
+                        verbose_name="Séance Décaissement",
+                    ),
+                ),
+                (
+                    "member",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="aids",
+                        to="ade4.member",
+                        verbose_name="Membre",
+                    ),
+                ),
+                (
+                    "recovery_meeting",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        related_name="aids_to_recover",
+                        to="ade4.meeting",
+                        verbose_name="Séance Recouvrement",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Aide',
-                'verbose_name_plural': 'Aides',
+                "verbose_name": "Aide",
+                "verbose_name_plural": "Aides",
             },
         ),
     ]

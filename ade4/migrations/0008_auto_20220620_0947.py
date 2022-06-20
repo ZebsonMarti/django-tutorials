@@ -6,18 +6,32 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ade4', '0007_alter_absence_options_alter_sanction_options_and_more'),
+        ("ade4", "0007_alter_absence_options_alter_sanction_options_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='accounttype',
-            name='used_for',
-            field=models.CharField(choices=[('ORG', 'Réunion Uniquement'), ('MEMBER', 'Membres Uniquement'), ('BOTH', 'Réunion et Membres')], default='MEMBER', max_length=6, verbose_name='Pour'),
+            model_name="accounttype",
+            name="used_for",
+            field=models.CharField(
+                choices=[
+                    ("ORG", "Réunion Uniquement"),
+                    ("MEMBER", "Membres Uniquement"),
+                    ("BOTH", "Réunion et Membres"),
+                ],
+                default="MEMBER",
+                max_length=6,
+                verbose_name="Pour",
+            ),
         ),
         migrations.AlterField(
-            model_name='aid',
-            name='amount_to_recover_by_member',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=8, verbose_name='Montant à recouvrer par membre'),
+            model_name="aid",
+            name="amount_to_recover_by_member",
+            field=models.DecimalField(
+                blank=True,
+                decimal_places=2,
+                max_digits=8,
+                verbose_name="Montant à recouvrer par membre",
+            ),
         ),
     ]

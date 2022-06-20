@@ -408,18 +408,25 @@ class BoardMember(TimestampMixin):
 
 
 class AccountType(TimestampMixin):
-    ORG, MEMBER, BOTH = 'ORG', 'MEMBER', 'BOTH'
+    ORG, MEMBER, BOTH = "ORG", "MEMBER", "BOTH"
     USED_FOR = [
-        (ORG, _t('Réunion Uniquement')),
-        (MEMBER, _t('Membres Uniquement')),
-        (BOTH, _t('Réunion et Membres')),
+        (ORG, _t("Réunion Uniquement")),
+        (MEMBER, _t("Membres Uniquement")),
+        (BOTH, _t("Réunion et Membres")),
     ]
 
     title = models.CharField(
         verbose_name="Name", max_length=30, unique=True, null=False, blank=False
     )
     code = models.CharField(verbose_name="Code", max_length=5, null=False, blank=False)
-    used_for = models.CharField(verbose_name=_t('Pour'), max_length=6, choices=USED_FOR, default=BOTH, null=False, blank=True)
+    used_for = models.CharField(
+        verbose_name=_t("Pour"),
+        max_length=6,
+        choices=USED_FOR,
+        default=BOTH,
+        null=False,
+        blank=True,
+    )
 
     def __str__(self):
         return self.title.upper()
@@ -528,7 +535,7 @@ class Sanction(TimestampMixin):
         on_delete=models.DO_NOTHING,
         null=False,
         blank=False,
-        related_name='sanctions'
+        related_name="sanctions",
     )
     member = models.ForeignKey(
         to=Member,
@@ -536,7 +543,7 @@ class Sanction(TimestampMixin):
         on_delete=models.CASCADE,
         null=False,
         blank=False,
-        related_name='sanctions'
+        related_name="sanctions",
     )
     reason = models.CharField(
         verbose_name=_t("Raison"), max_length=255, null=False, blank=False
@@ -564,7 +571,7 @@ class Sanction(TimestampMixin):
     )
 
     def __str__(self):
-        return f"{self.meeting}: {self.member}: {self.amount}: {self.title}"
+        return f"{self.meeting}: {self.member}: {self.amount}: {self.reason}"
 
     @property
     def type(self):
@@ -583,7 +590,7 @@ class Absence(TimestampMixin):
         on_delete=models.DO_NOTHING,
         null=False,
         blank=False,
-        related_name='absences'
+        related_name="absences",
     )
     member = models.ForeignKey(
         to=Member,
@@ -591,7 +598,7 @@ class Absence(TimestampMixin):
         on_delete=models.CASCADE,
         null=False,
         blank=False,
-        related_name='absences'
+        related_name="absences",
     )
     reason = models.CharField(
         verbose_name=_t("Raison"), max_length=255, null=False, blank=False
@@ -619,7 +626,7 @@ class Aid(TimestampMixin):
         on_delete=models.CASCADE,
         null=False,
         blank=False,
-        related_name='aids'
+        related_name="aids",
     )
 
     reason = models.CharField(
@@ -648,7 +655,7 @@ class Aid(TimestampMixin):
         on_delete=models.DO_NOTHING,
         null=False,
         blank=False,
-        related_name='aids'
+        related_name="aids",
     )
     recovery_meeting = models.ForeignKey(
         to=Meeting,
@@ -656,7 +663,7 @@ class Aid(TimestampMixin):
         on_delete=models.DO_NOTHING,
         null=False,
         blank=False,
-        related_name='aids_to_recover'
+        related_name="aids_to_recover",
     )
 
     def __str__(self):

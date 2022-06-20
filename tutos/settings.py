@@ -28,6 +28,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
 
 # Application definition
 
@@ -41,15 +46,16 @@ INSTALLED_APPS = [
     # Third Party Apps
     "crispy_forms",
     "crispy_tailwind",
-
+    "debug_toolbar",
     # Own Apps
-    'authapp.apps.AuthappConfig',
-    'home.apps.HomeConfig',
-    'ade4.apps.Ade4Config',
-    'bookshtmx.apps.BookshtmxConfig',
+    "authapp.apps.AuthappConfig",
+    "home.apps.HomeConfig",
+    "ade4.apps.Ade4Config",
+    "bookshtmx.apps.BookshtmxConfig",
 ]
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -146,7 +152,7 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL = 'authapp.User'
+AUTH_USER_MODEL = "authapp.User"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 

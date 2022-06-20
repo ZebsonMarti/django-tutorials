@@ -389,10 +389,10 @@ def insert_aids(aid_list: List[Dict]) -> bool:
                 last_name__iexact=last_name,
             )
             disbursal_meeting = Meeting.objects.get(
-                date=date.fromisoformat(aid["disbursal_meeting"]['date'])
+                date=date.fromisoformat(aid["disbursal_meeting"]["date"])
             )
             recovery_meeting = Meeting.objects.get(
-                date=date.fromisoformat(aid["recovery_meeting"]['date'])
+                date=date.fromisoformat(aid["recovery_meeting"]["date"])
             )
             reason = f"{aid['reason']} de {first_name} {last_name}"
             aids.append(

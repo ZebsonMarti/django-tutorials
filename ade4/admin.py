@@ -77,7 +77,7 @@ class BoardMemberAdmin(admin.ModelAdmin):
 
 @admin.register(m.AccountType)
 class AccountTypeAdmin(admin.ModelAdmin):
-    list_display = ["title", 'used_for', "code"]
+    list_display = ["title", "used_for", "code"]
 
 
 @admin.register(m.MemberTransaction)
