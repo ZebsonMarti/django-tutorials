@@ -408,10 +408,18 @@ class BoardMember(TimestampMixin):
 
 
 class AccountType(TimestampMixin):
+    ORG, MEMBER, BOTH = 'ORG', 'MEMBER', 'BOTH'
+    USED_FOR = [
+        (ORG, _t('Réunion Uniquement')),
+        (MEMBER, _t('Membres Uniquement')),
+        (BOTH, _t('Réunion et Membres')),
+    ]
+
     title = models.CharField(
         verbose_name="Name", max_length=30, unique=True, null=False, blank=False
     )
     code = models.CharField(verbose_name="Code", max_length=5, null=False, blank=False)
+    used_for = models.CharField(verbose_name=_t('Pour'), max_length=6, choices=USED_FOR, default=BOTH, null=False, blank=True)
 
     def __str__(self):
         return self.title.upper()
