@@ -1,24 +1,22 @@
 from typing import Dict
 
 from .utils import MemberHistoryLine
-from .models import MemberTransaction, AccountType
+from .models import MemberTransaction, Account
 
 
 def get_accounts(*, used_for):
     if used_for.upper() == "MEMBER":
-        used_for_list = [AccountType.MEMBER, AccountType.BOTH]
+        used_for_list = [Account.MEMBER, Account.BOTH]
     elif used_for.upper() == "ORG":
-        used_for_list = [AccountType.ORG, AccountType.BOTH]
+        used_for_list = [Account.ORG, Account.BOTH]
     else:
         raise ValueError("Wrong argument value. Only Member and Org are allowed!")
     return [
         account.title
         for account in (
-            AccountType.objects.filter(used_for__in=used_for_list).only("title").all()
+            Account.objects.filter(used_for__in=used_for_list).only("title").all()
         )
     ]
-
-
 
 
 class MemberFinance(object):
@@ -32,7 +30,13 @@ class MemberFinance(object):
             )
             .prefetch_related("member__absences", "member__aids", "member__sanctions")
             .filter(member__user__email=email)
-            .only("meeting__date", "account__title", "amount", "member__id", "member__user")
+            .only(
+                "meeting__date",
+                "account__title",
+                "amount",
+                "member__id",
+                "member__user",
+            )
             .all()
         )
 

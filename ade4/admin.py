@@ -75,8 +75,8 @@ class BoardMemberAdmin(admin.ModelAdmin):
     list_display = ["poste", "created_at", "updated_at"]
 
 
-@admin.register(m.AccountType)
-class AccountTypeAdmin(admin.ModelAdmin):
+@admin.register(m.Account)
+class AccountAdmin(admin.ModelAdmin):
     list_display = ["title", "used_for", "code"]
 
 

@@ -407,7 +407,28 @@ class BoardMember(TimestampMixin):
         return f"Bureau {self.board.id} -> {self.position.title.upper()}: {self.member.name.upper()}"
 
 
-class AccountType(TimestampMixin):
+class AccountType(object):
+    ASSISTANCE = "assistance"
+    SAVINGS = "savings"
+    SCHOLAR_SAVINGS = "scholar_savings"
+    PROJECT = "project"
+    SANCTION = "sanction"
+    INSCRIPTION = "inscription"
+    OPERATING_FEES = "operation_fees"
+    OTHER = "other"
+    LIST = [
+        (ASSISTANCE, "assistance"),
+        (SAVINGS, "savings"),
+        (SCHOLAR_SAVINGS, "scholar_savings"),
+        (PROJECT, "project"),
+        (SANCTION, "sanction"),
+        (INSCRIPTION, "inscription"),
+        (OPERATING_FEES, "operation_fees"),
+        (OTHER, "other"),
+    ]
+
+
+class Account(TimestampMixin):
     ORG, MEMBER, BOTH = "ORG", "MEMBER", "BOTH"
     USED_FOR = [
         (ORG, _t("Réunion Uniquement")),
@@ -416,7 +437,7 @@ class AccountType(TimestampMixin):
     ]
 
     title = models.CharField(
-        verbose_name="Name", max_length=30, unique=True, null=False, blank=False
+        verbose_name="Name", max_length=30, choices=AccountType.LIST, unique=True, null=False, blank=False
     )
     code = models.CharField(verbose_name="Code", max_length=5, null=False, blank=False)
     used_for = models.CharField(
@@ -448,7 +469,7 @@ class Transaction(TimestampMixin):
         to=Meeting, on_delete=models.DO_NOTHING, null=False, blank=False
     )
     account = models.ForeignKey(
-        to=AccountType, on_delete=models.DO_NOTHING, null=False, blank=False
+        to=Account, on_delete=models.DO_NOTHING, null=False, blank=False
     )
     title = models.CharField(max_length=255, null=False, blank=False)
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
