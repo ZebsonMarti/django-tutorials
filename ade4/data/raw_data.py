@@ -932,8 +932,8 @@ boards = [
 # AccountType
 secours, epargne = AT.ASSISTANCE, AT.SAVINGS # "Secours", "Épargne"
 epargne_scolaire, sanction = AT.SCHOLAR_SAVINGS, AT.SANCTION # "Épargne Scolaire", "Sanction"
-inscription, fond_roulement = AT.INSCRIPTION, AT.OTHER # "Inscription", "Fond de Roulement"
-project = AT.PROJECT # "Projet"
+inscription, fond_roulement = AT.INSCRIPTION, AT.OPERATING_FEES # "Inscription", "Fond de Roulement"
+project, other = AT.PROJECT, AT.OTHER # "Projet"
 
 account_types = [
     secours,

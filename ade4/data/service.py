@@ -251,7 +251,7 @@ def insert_account_types(account_list: List[str]) -> bool:
     if table_empty:
         accounts = []
         for account in account_list:
-            accounts.append(Account(title=account))
+            accounts.append(Account(title=account, code=account[:3].upper()))
         _ = Account.objects.bulk_create(accounts)
         return True
     return False
