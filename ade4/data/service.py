@@ -247,12 +247,12 @@ def insert_boards_and_board_members(board_list: List[Dict]) -> bool:
 
 
 def insert_account_types(account_list: List[str]) -> bool:
-    table_empty = AccountType.objects.all().count() == 0
+    table_empty = Account.objects.all().count() == 0
     if table_empty:
         accounts = []
         for account in account_list:
-            accounts.append(AccountType(title=account))
-        _ = AccountType.objects.bulk_create(accounts)
+            accounts.append(Account(title=account))
+        _ = Account.objects.bulk_create(accounts)
         return True
     return False
 
@@ -266,7 +266,7 @@ def insert_member_transactions(transaction_list: List[Dict]) -> bool:
                 date=date.fromisoformat(mt["meeting"]["date"])
             )
             for transaction_type in mt["transactions"]:
-                account = AccountType.objects.get(
+                account = Account.objects.get(
                     title__iexact=transaction_type["account"]
                 )
                 for m in transaction_type["members"]:
@@ -296,7 +296,7 @@ def insert_org_transactions(transaction_list: List[Dict]) -> bool:
         for m in transaction_list:
             meeting = Meeting.objects.get(date=date.fromisoformat(m["meeting"]["date"]))
             for balance in m["balances"]:
-                account = AccountType.objects.get(title__iexact=balance["account"])
+                account = Account.objects.get(title__iexact=balance["account"])
                 transactions.append(
                     OrgTransaction(
                         meeting=meeting,

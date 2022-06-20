@@ -1,5 +1,5 @@
 from random import random, choice
-
+from ..models import AccountType as AT
 # Address
 
 raw_addresses = [
@@ -930,10 +930,10 @@ boards = [
 ]
 
 # AccountType
-secours, epargne = "Secours", "Épargne"
-epargne_scolaire, sanction = "Épargne Scolaire", "Sanction"
-inscription, fond_roulement = "Inscription", "Fond de Roulement"
-project = "Projet"
+secours, epargne = AT.ASSISTANCE, AT.SAVINGS # "Secours", "Épargne"
+epargne_scolaire, sanction = AT.SCHOLAR_SAVINGS, AT.SANCTION # "Épargne Scolaire", "Sanction"
+inscription, fond_roulement = AT.INSCRIPTION, AT.OTHER # "Inscription", "Fond de Roulement"
+project = AT.PROJECT # "Projet"
 
 account_types = [
     secours,

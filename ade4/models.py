@@ -417,14 +417,14 @@ class AccountType(object):
     OPERATING_FEES = "operation_fees"
     OTHER = "other"
     LIST = [
-        (ASSISTANCE, "assistance"),
-        (SAVINGS, "savings"),
-        (SCHOLAR_SAVINGS, "scholar_savings"),
-        (PROJECT, "project"),
-        (SANCTION, "sanction"),
-        (INSCRIPTION, "inscription"),
-        (OPERATING_FEES, "operation_fees"),
-        (OTHER, "other"),
+        (ASSISTANCE, _t("Secours")),
+        (SAVINGS, _t("Épargne")),
+        (SCHOLAR_SAVINGS, _t("Épargne Scolaire")),
+        (PROJECT, _t("Projet")),
+        (SANCTION, _t("Sanction")),
+        (INSCRIPTION, _t("Inscription")),
+        (OPERATING_FEES, _t("Fond de Roulement")),
+        (OTHER, _t("Autre")),
     ]
 
 
