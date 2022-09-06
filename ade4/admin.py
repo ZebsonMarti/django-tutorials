@@ -102,12 +102,12 @@ class DocumentHistoryAdmin(admin.ModelAdmin):
 
 @admin.register(m.Sanction)
 class SanctionAdmin(admin.ModelAdmin):
-    list_display = ["meeting", "member", "reason", "amount", "sanction_type"]
+    list_display = ["meeting", "member", "sanction_reason", "amount", "sanction_type"]
 
 
 @admin.register(m.Absence)
 class AbsenceAdmin(admin.ModelAdmin):
-    list_display = ["meeting", "member", "reason", "justified", "sanctioned"]
+    list_display = ["meeting", "member", "absence_reason", "justified", "sanctioned"]
 
 
 @admin.register(m.Aid)

@@ -12,7 +12,13 @@
 <br>
 <br>
 <hr>
-{{ his }}
+{% for d, h in his %}
+{{ d }} ==> {{ h.absence_reason }}
+<br>
+<hr>
+{% endfor %}
+
+{{ t.a }}
 
 </body>
 </html>

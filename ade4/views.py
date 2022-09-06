@@ -9,5 +9,6 @@ def member_finance(request):
     ctx = {
         "balances": m.account_balances,
         "his": m.history,
+        't': {'a': 1},
     }
     return render(request, "ade4/member_finance.html", ctx)

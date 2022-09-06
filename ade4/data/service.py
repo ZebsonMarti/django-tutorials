@@ -337,7 +337,7 @@ def insert_sanctions(sanction_list: List[Dict]) -> bool:
                         Sanction(
                             member=member,
                             meeting=meeting,
-                            reason=m["reason"],
+                            sanction_reason=m["reason"],
                             amount=m["amount"],
                             executed_or_paid=m["executed_or_paid"],
                         )
@@ -365,7 +365,7 @@ def insert_absences(absence_list: List[Dict]) -> bool:
                         Absence(
                             member=member,
                             meeting=meeting,
-                            reason=m["reason"],
+                            absence_reason=m["reason"],
                         )
                     )
         _ = Absence.objects.bulk_create(absences)

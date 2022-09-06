@@ -571,7 +571,7 @@ class Sanction(TimestampMixin):
         blank=False,
         related_name="sanctions",
     )
-    reason = models.CharField(
+    sanction_reason = models.CharField(
         verbose_name=_t("Raison"), max_length=255, null=False, blank=False
     )
     sanction_type = models.CharField(
@@ -626,7 +626,7 @@ class Absence(TimestampMixin):
         blank=False,
         related_name="absences",
     )
-    reason = models.CharField(
+    absence_reason = models.CharField(
         verbose_name=_t("Raison"), max_length=255, null=False, blank=False
     )
     justified = models.BooleanField(
