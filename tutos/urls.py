@@ -23,6 +23,7 @@ urlpatterns = [
     path("", include("home.urls")),
     path("htmx/books/", include("bookshtmx.urls")),
     path("ade4/", include("ade4.urls")),
+    path("image/", include("processimages.urls")),
 ]
 
 if settings.DEBUG:

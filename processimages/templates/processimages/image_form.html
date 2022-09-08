@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Image from Client Side</title>
+</head>
+
+<body>
+    {% include '_includes/_nav.html' %}
+
+    <h1>This is to test how to process image in the browser before uploding</h1>
+
+    {% if messages %}
+    <div>
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+
+    <div>
+        <form action="" method="POST" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+
+    </div>
+    <script src="{% static 'js/browser-image-compression/browser-image-compression.js' %}"></script>
+    <script src="{% static 'js/image-blob-reduce/image-blob-reduce.min.js' %}"></script>
+    <script src="{% static 'js/piexif.js' %}"></script>
+
+</body>
+
+</html>

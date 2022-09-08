@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image List</title>
+
+    <style>
+        img {
+            width: 15%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    {% include '_includes/_nav.html' %}
+
+    <h1>Image List</h1>
+
+    {% if messages %}
+    <div>
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+
+    <div>
+
+        {% for image in images %}
+        <div>
+            <span>{{ image.name }}</span>
+            <img src="{{ image.image.url }}" alt="An Image">
+            <img src="{{ image.resized_image.url }}" alt="An Image">
+        </div>
+        {% endfor %}
+
+    </div>
+
+</body>
+
+</html>
