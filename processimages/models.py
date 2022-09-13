@@ -13,7 +13,7 @@ class ProfileImage(models.Model):
     image = models.ImageField(verbose_name="Photo", upload_to="images/", null=False, blank=False)
     resized_image = ResizedImageField(
         verbose_name="Resized Photo", 
-        upload_to="images/", 
-        size=[500, 300], quality=75,
+        upload_to="resized/", 
+        size=[800, 800], quality=90,
         null=True, blank=False
     )

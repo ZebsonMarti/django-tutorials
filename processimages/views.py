@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView
 from .forms import ProfileImageForm
 from .models import ProfileImage
+from .utils import ProcessImage
 # Create your views here.
 
 class ProcessImageView(TemplateView):
@@ -16,9 +17,11 @@ class ProcessImageView(TemplateView):
 
     def post(self, request,**kwargs):
         form = ProfileImageForm(request.POST, request.FILES)
-        print("\n", request.FILES, "\n")
         if form.is_valid():
             img = form.save()
+            # resize images
+            image_p = ProcessImage(image_path=img.image.path)
+            image_p.rotate().resize().save()
             messages.add_message(request, messages.SUCCESS, "Image Uploaded")
             return redirect(to="process_image")
         messages.add_message(request, messages.ERROR, message="Something went wrong")
